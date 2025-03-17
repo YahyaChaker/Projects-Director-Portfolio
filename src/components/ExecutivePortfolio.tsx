@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import * as LucideIcons from 'lucide-react';
 import styles from '../styles/ExecutivePortfolio.module.css';
-import Image from 'next/image'; // Add Image import for Next.js optimization
 import PrintComponent from './print-component'; // Import PrintComponent for print functionality
 
 // Type assertion for Lucide icons
