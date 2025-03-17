@@ -1,0 +1,26 @@
+/* Progress bar styles */
+.completion-rate {
+  width: 94%;
+}
+
+.budget-adherence {
+  width: 97%;
+}
+
+.client-satisfaction {
+  width: 92%;
+}
+
+.team-efficiency {
+  width: 89%;
+}
+
+.resource-optimization {
+  width: 91%;
+}
+
+/* Lucide icon styles */
+.lucide-icon {
+  display: inline-block;
+  vertical-align: middle;
+}

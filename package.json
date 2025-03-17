@@ -1,0 +1,69 @@
+{
+  "name": "executive-portfolio-01",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "lucide-react": "^0.309.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "recharts": "^2.10.3",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/d3-array": "^3.2.1",
+    "@types/d3-color": "^3.1.3",
+    "@types/d3-ease": "^3.0.2",
+    "@types/d3-interpolate": "^3.0.4",
+    "@types/d3-scale": "^4.0.9",
+    "@types/d3-shape": "^3.1.7",
+    "@types/d3-time": "^3.0.4",
+    "@types/d3-timer": "^3.0.2",
+    "@types/graceful-fs": "^4.1.9",
+    "@types/html-minifier-terser": "^7.0.2",
+    "@types/istanbul-lib-coverage": "^2.0.6",
+    "@types/istanbul-lib-report": "^3.0.3",
+    "@types/istanbul-reports": "^3.0.4",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.10",
+    "@types/prettier": "^2.7.3",
+    "@types/q": "^1.5.8",
+    "@types/recharts": "^1.8.29",
+    "@types/stack-utils": "^2.0.3",
+    "@types/testing-library__jest-dom": "^5.14.9",
+    "@types/yargs": "^17.0.33",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1"
+  }
+}

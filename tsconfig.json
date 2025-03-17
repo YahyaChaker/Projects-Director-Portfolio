@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": [
+      "node",
+      "jest",
+      "d3-array",
+      "d3-color",
+      "d3-ease",
+      "d3-interpolate",
+      "d3-scale",
+      "d3-shape",
+      "d3-time",
+      "d3-timer",
+      "graceful-fs",
+      "html-minifier-terser",
+      "istanbul-lib-coverage",
+      "istanbul-lib-report",
+      "istanbul-reports",
+      "prettier",
+      "q",
+      "stack-utils",
+      "testing-library__jest-dom",
+      "yargs"
+    ]
+  },
+  "include": [
+    "src"
+  ]
+}
