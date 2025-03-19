@@ -1,6 +1,6 @@
 // components/PrintComponent.tsx
 import React, { useState } from 'react';
-import { Printer, X, Check, FileText } from 'lucide-react';
+import { Printer, X, FileText } from 'lucide-react';
 import styles from '../styles/ExecutivePortfolio.module.css';
 
 interface PrintSectionProps {

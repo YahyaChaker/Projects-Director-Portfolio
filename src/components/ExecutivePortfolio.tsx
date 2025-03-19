@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import * as LucideIcons from 'lucide-react';
 import styles from '../styles/ExecutivePortfolio.module.css';
 import PrintComponent from './print-component'; // Import PrintComponent for print functionality
@@ -18,8 +18,7 @@ const {
   BookOpen,
   ChevronDown,
   ChevronRight,
-  Printer,
-  X
+ 
 } = LucideIcons as any;
 
 const ExecutivePortfolio: React.FC = () => {
@@ -66,13 +65,13 @@ const ExecutivePortfolio: React.FC = () => {
   ];
   
   // Data for performance improvements chart
-  const performanceData = [
-    { name: 'Maintenance Compliance', before: 76, after: 98.5 },
-    { name: 'Project Completion Rate', before: 78, after: 94 },
-    { name: 'Safety Incidents', before: 100, after: 55 },
-    { name: 'Team Retention', before: 72, after: 100 },
-    { name: 'Cost Reduction', before: 100, after: 74 },
-  ];
+  // const performanceData = [
+  //   { name: 'Maintenance Compliance', before: 76, after: 98.5 },
+  //   { name: 'Project Completion Rate', before: 78, after: 94 },
+  //   { name: 'Safety Incidents', before: 100, after: 55 },
+  //   { name: 'Team Retention', before: 72, after: 100 },
+  //   { name: 'Cost Reduction', before: 100, after: 74 },
+  // ];
   
   // Boho summer vibe color palette
   const COLORS = ['#F9A826', '#2A9D8F', '#E76F51', '#8AB17D', '#E9C46A'];
@@ -181,9 +180,7 @@ const ExecutivePortfolio: React.FC = () => {
           {/* Executive Summary */}
           <section 
             id="summary-section" 
-            className={styles.summarySection}
-            style={{ display: activeSection === 'summary' ? 'block' : 'none' }}
-          
+            className={`${styles.summarySection} ${activeSection === 'summary' ? styles.visible : styles.hidden}`}
           >
             {/* Hero Section */}
             <div className={styles.summaryHero}>
@@ -415,8 +412,7 @@ const ExecutivePortfolio: React.FC = () => {
           {/* Skills and Strengths */}
           <section 
             id="skills-section" 
-            className={styles.section}
-            style={{ display: activeSection === 'skills' ? 'block' : 'none' }}
+            className={`${styles.section} ${activeSection === 'skills' ? styles.visible : styles.hidden}`}
           >
             <h2 className={styles.sectionTitleWithMargin}>Key Skills and Strengths</h2>
             
@@ -539,8 +535,7 @@ const ExecutivePortfolio: React.FC = () => {
           {/* Professional Experience */}
           <section 
             id="experience-section" 
-            className={styles.section}
-            style={{ display: activeSection === 'experience' ? 'block' : 'none' }}
+            className={`${styles.section} ${activeSection === 'experience' ? styles.visible : styles.hidden}`}
           >
             <h2 className={styles.sectionTitleWithMargin}>Professional Experience</h2>
             
@@ -735,8 +730,7 @@ const ExecutivePortfolio: React.FC = () => {
           {/* Projects Analysis */}
           <section 
             id="projects-section" 
-            className={styles.section}
-            style={{ display: activeSection === 'projects' ? 'block' : 'none' }}
+            className={`${styles.section} ${activeSection === 'projects' ? styles.visible : styles.hidden}`}
           >
             <h2 className={styles.sectionTitleWithMargin}>Projects Portfolio Analysis</h2>
             
@@ -851,8 +845,7 @@ const ExecutivePortfolio: React.FC = () => {
           {/* Education & Certifications */}
           <section 
             id="education-section" 
-            className={styles.section}
-            style={{ display: activeSection === 'education' ? 'block' : 'none' }}
+            className={`${styles.section} ${activeSection === 'education' ? styles.visible : styles.hidden}`}
           >
             <h2 className={styles.sectionTitleWithMargin}>Education & Certifications</h2>
             

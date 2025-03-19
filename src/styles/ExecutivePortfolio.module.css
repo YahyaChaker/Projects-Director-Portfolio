@@ -2080,3 +2080,12 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
 .avoidPageBreak {
   page-break-inside: avoid !important;
 }
+
+/* Section Visibility Classes */
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
