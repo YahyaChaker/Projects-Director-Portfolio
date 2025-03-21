@@ -2880,23 +2880,3 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
     box-shadow: none !important;
   }
 }
-
-/* Add or update these styles */
-
-.projectsAnalysisContainer {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.projectColumn {
-  flex: 1;
-  min-width: 0; /* Prevents flex items from overflowing */
-}
-
-@media (max-width: 768px) {
-  .projectsAnalysisContainer {
-    flex-direction: column;
-  }
-}

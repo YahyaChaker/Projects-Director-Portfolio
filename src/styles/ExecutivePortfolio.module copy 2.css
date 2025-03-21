@@ -2,70 +2,70 @@
 .portfolioContainer {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  background-color: #F4F4F4; /* Off-White */
+  min-height: 100vh; /* Ensures full viewport height */
+  background-color: #F4F4F4; /* Off-white background for the entire site */
 }
 
 /* Header Styles */
-.headerImageTitle { /* Corrected typo */
+.headerImageTitle { /* Typo: should be "headerImageTitle" */
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  gap: 1rem; /* Space between image and title */
 }
 
 .headerContent {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Non-standard property, likely a typo of "row" */
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
-  max-width: 72rem;
+  max-width: 72rem; /* Sets maximum width for header content */
 }
 
 .profileImageContainer {
-  flex-shrink: 0;
+  flex-shrink: 0; /* Prevents image container from shrinking */
 }
 
 .profileImage {
   width: 150px;
   height: 150px;
-  border-radius: 50%;
-  //object-fit:cover;
+  border-radius: 50%; /* Creates circular image */
+  //object-fit:cover; /* Commented out */
   border: 3px solid #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .headerTextContent {
   display: flex;
-  flex-direction: column-row;
+  flex-direction: column-row; /* Same typo as above */
   justify-content: space-between;
-  flex-grow: 1;
-  
+  flex-grow: 1; /* Allows text to take remaining space */
 }
 
+/* Responsive header adjustments for mobile */
 @media (max-width: 768px) {
   .headerContent {
-    flex-direction: column;
+    flex-direction: column; /* Stack elements vertically on small screens */
     align-items: center;
     gap: 1rem;
     text-align: center;
   }
   
   .profileImage {
-    width: 100px;
+    width: 100px; /* Smaller profile image on mobile */
     height: 100px;
   }
 }
 
 .header {
-  background: linear-gradient(to right, #1B365D, #2C2F33); /* Navy Blue to Charcoal Black */
+  background: linear-gradient(to right, #1B365D, #2C2F33); /* Navy Blue to Charcoal Black gradient */
   color: white;
   /* padding: 1.5rem;
   margin: 0 auto;
-  width: 100%;   */
+  width: 100%;   */ /* Commented out */
 }
 
+/* More responsive adjustments for desktop */
 @media (min-width: 768px) {
   .header {
     padding: 2rem;
@@ -75,7 +75,7 @@
 .headerContainer {
   max-width: 68rem;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto; /* Center the container */
   padding: 0 1rem;
 }
   
@@ -85,9 +85,10 @@
   font-weight: 700;
 }
 
+/* Title responsive adjustment */
 @media (min-width: 768px) {
   .title {
-    font-size: 2.25rem;
+    font-size: 2.25rem; /* Larger title on desktop */
     line-height: 2.5rem;
   }
 }
@@ -100,9 +101,10 @@
   color: #D1D5DB; /* Light Silver */
 }
 
+/* Subtitle responsive adjustment */
 @media (min-width: 768px) {
   .subtitle {
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Larger subtitle on desktop */
     line-height: 2rem;
   }
 }
@@ -110,7 +112,7 @@
 .contactInfo {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.5rem; /* Space between contact items */
 }
 
 .contactItem {
@@ -125,16 +127,16 @@
 }
 
 .linkedinLink:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Underline on hover for LinkedIn link */
 }
 
 /* Navigation Styles */
 .nav {
-  position: sticky;
+  position: sticky; /* Sticky navigation that stays at top when scrolling */
   top: 0;
   background-color: white;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-  z-index: 10;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 10; /* Ensures nav appears above other content */
   width: 100%;
 }
 
@@ -144,29 +146,30 @@
   padding: 0 1rem;
 }
 
+/* Navigation responsive adjustment */
 @media (min-width: 768px) {
   .navContainer {
-    padding: 0 2rem;
+    padding: 0 2rem; /* More padding on desktop */
   }
 }
 
 .navItems {
   display: flex;
-  overflow-x: auto;
+  overflow-x: auto; /* Allows horizontal scrolling if items overflow */
   padding: 0.5rem 0;
   gap: 0.25rem;
 }
 
 @media (min-width: 768px) {
   .navItems {
-    gap: 0.5rem;
+    gap: 0.5rem; /* More space between nav items on desktop */
   }
 }
 
 .navButton {
   padding: 0.75rem 1rem;
   border-radius: 0.375rem;
-  white-space: nowrap;
+  white-space: nowrap; /* Prevents text wrapping in nav buttons */
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -176,13 +179,13 @@
 
 @media (min-width: 768px) {
   .navButton {
-    font-size: 1rem;
+    font-size: 1rem; /* Larger font in nav buttons on desktop */
     line-height: 1.5rem;
   }
 }
 
 .navButton:hover {
-  background-color: #F4F4F4; /* Off-White */
+  background-color: #F4F4F4; /* Off-White background on hover */
 }
 
 .navButtonActive {
@@ -192,7 +195,7 @@
 
 /* Main Content */
 .main {
-  flex-grow: 1;
+  flex-grow: 1; /* Takes up all available vertical space */
   width: 100%;
 }
 
@@ -204,7 +207,7 @@
 
 @media (min-width: 768px) {
   .mainContainer {
-    padding: 2rem;
+    padding: 2rem; /* More padding on desktop */
   }
 }
 
@@ -212,14 +215,14 @@
 .section {
   background-color: white;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   padding: 1.5rem;
   margin-bottom: 2rem;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
 }
 
 .section:hover {
-  box-shadow: 0 8px 10px -1px rgba(0, 0, 0, 0.1), 0 5px 5px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+  box-shadow: 0 8px 10px -1px rgba(0, 0, 0, 0.1), 0 5px 5px -1px rgba(0, 0, 0, 0.06); /* Enhanced shadow on hover */
 }
 
 .sectionTitle {
@@ -235,7 +238,7 @@
   line-height: 2rem;
   font-weight: 700;
   color: #2C2F33; /* Charcoal Black */
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem; /* More bottom margin than standard sectionTitle */
 }
 
 .paragraph {
@@ -259,47 +262,48 @@
 
 @media (min-width: 768px) {
   .chartContainer {
-    height: 20rem;
+    height: 20rem; /* Taller charts on desktop */
   }
 }
 
+
 /* Executive Summary Section */
 .summarySection {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(244, 244, 244, 0.9) 100%); /* White to Off-White */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(244, 244, 244, 0.9) 100%); /* White to Off-White gradient */
   border-radius: 0.5rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   padding: 0;
   margin-bottom: 2rem;
   overflow: hidden;
-  border: 1px solid rgba(27, 54, 93, 0.1); /* Light Navy Blue */
+  border: 1px solid rgba(27, 54, 93, 0.1); /* Light Navy Blue border */
   transition: box-shadow 0.3s ease;
 }
 
 .summarySection:hover {
-  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.08); /* Enhanced shadow on hover */
 }
 
 .summaryHero {
-  background: linear-gradient(135deg, #1B365D 0%, #2C2F33 100%); /* Navy Blue to Charcoal Black */
-  padding: 2.5rem ;
+  background: linear-gradient(135deg, #1B365D 0%, #2C2F33 100%); /* Navy Blue to Charcoal Black gradient */
+  padding: 2.5rem;
   position: relative;
   overflow: hidden;
 }
 
 .summaryHeroContent {
   position: relative;
-  z-index: 2;
-  //max-width: 800px;
+  z-index: 2; /* Positions content above the pattern background */
+  //max-width: 800px; /* Commented out */
 }
 
 .summaryHeroPattern {
-  position: absolute;
+  position: absolute; /* Positioned absolutely to fill the hero section */
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-  opacity: 0.3;
+  opacity: 0.3; /* Partially transparent pattern */
 }
 
 .summaryHeadline {
@@ -322,7 +326,7 @@
 
 @media (min-width: 768px) {
   .summaryTitle {
-    font-size: 3rem;
+    font-size: 3rem; /* Larger title on desktop */
   }
 }
 
@@ -330,7 +334,7 @@
   font-size: 1.25rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.95);
-  //max-width: 700px;
+  //max-width: 700px; /* Commented out */
   margin-bottom: 2rem;
   font-weight: 500;
 }
@@ -344,9 +348,9 @@
 }
 
 .summaryHighlight {
-  flex: 1 1 100px;
+  flex: 1 1 100px; /* Flexible items with minimum width */
   background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* Creates frosted glass effect */
   border-radius: 0.5rem;
   padding: 1rem;
   text-align: center;
@@ -355,8 +359,8 @@
 }
 
 .summaryHighlight:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px); /* Slight lift on hover */
+  background: rgba(255, 255, 255, 0.25); /* Slightly more opaque background */
 }
 
 .highlightNumber {
@@ -415,7 +419,7 @@
 
 .metricsSectionHeader {
   padding: 0 1.5rem;
-  //border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  //border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Commented out */
   margin-bottom: 2rem;
 }
 
@@ -434,33 +438,34 @@
   color: #4A4D52; /* Steel Gray */
   font-size: 1rem;
   font-weight: 400;
-  //max-width: 640px;
+  //max-width: 640px; /* Commented out */
 }
 
 .headingAccent {
   height: 24px;
   width: 4px;
-  background: linear-gradient(to bottom, #1B365D, #4A4D52); /* Navy Blue to Steel Gray */
+  background: linear-gradient(to bottom, #1B365D, #4A4D52); /* Navy Blue to Steel Gray gradient */
   border-radius: 2px;
   margin-right: 0.5rem;
 }
 
 .metricsGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 1fr); /* Five columns by default */
   gap: 1.5rem;
   padding: 0 1.5rem;
 }
 
+/* Responsive adjustments for metrics grid */
 @media (max-width: 1200px) {
   .metricsGrid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Three columns on medium screens */
   }
 }
 
 @media (max-width: 768px) {
   .metricsGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Two columns on small screens */
     padding: 0 1.5rem;
   }
   
@@ -471,7 +476,7 @@
 
 @media (max-width: 640px) {
   .metricsGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* One column on very small screens */
   }
 }
 
@@ -480,7 +485,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding:1rem;
+  padding: 1rem;
   background: rgba(27, 55, 93, 0.02); /* Light Navy Blue */
   border-radius: 10px;
   position: relative;
@@ -490,11 +495,11 @@
 }
 
 .metricCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Slight lift on hover */
 }
 
 .metricCard::before {
-  content: "";
+  content: ""; /* Creates colored top border for each card */
   position: absolute;
   top: 0;
   left: 0;
@@ -504,12 +509,12 @@
   background: #D1D5DB; /* Light Silver */
 }
 
+/* Different colored tops for different metric categories */
 .maintenance::before { background: #2E6A4F; } /* Deep Green */
 .completion::before { background: #C4A87C; } /* Gold (Muted) */
 .safety::before { background: #1B365D; } /* Navy Blue */
 .retention::before { background: #4A4D52; } /* Steel Gray */
 .cost::before { background: #2C2F33; } /* Charcoal Black */
-
 
 .metricTitle {
   text-transform: uppercase;
@@ -521,11 +526,11 @@
   height: 60px; /* Fixed height instead of min-height */
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* This aligns content to the top */
+  align-items: flex-start; /* Aligns content to the top */
   text-align: center;
   width: 100%;
   padding-top: 5px; /* Small top padding to prevent text from touching the top edge */
-  //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.06);
+  //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.06); /* Commented out */
 }
 
 .metricValue {
@@ -573,9 +578,10 @@
   position: absolute;
   height: 100%;
   border-radius: 3px;
-  animation: growBar 1.5s ease-out forwards;
+  animation: growBar 1.5s ease-out forwards; /* Animation for growing the bar */
 }
 
+/* Different colors for metric bars by category */
 .maintenance .metricBarAfter { 
   background: rgba(46, 106, 79, 0.85); /* Deep Green */
 }
@@ -596,6 +602,7 @@
   background: rgba(44, 47, 51, 0.85); /* Charcoal Black */
 }
 
+/* Specific widths for metric bars */
 .metricBarBefore76 {
   width: 76%;
 }
@@ -626,7 +633,7 @@
 
 @keyframes growBar {
   from { width: 0; }
-  to { width: var(--percent, 0%); }
+  to { width: var(--percent, 0%); } /* Uses CSS variable for percentage */
 }
 
 /* Comparison legend under cards */
@@ -647,7 +654,7 @@
 .metricsSummary {
   padding: 0 1.5rem;
   margin-top: 2rem;
-  //border-top: 1px solid rgba(0, 0, 0, 0.05);
+  //border-top: 1px solid rgba(0, 0, 0, 0.05); /* Commented out */
   display: flex;
   justify-content: center;
 }
@@ -657,7 +664,7 @@
   border: 1px solid rgba(196, 168, 124, 0.2); /* Light gold border */
   border-radius: 8px;
   padding: 1rem 1.5rem;
-  //max-width: 600px;
+  //max-width: 600px; /* Commented out */
   text-align: left;
 }
 
@@ -667,17 +674,18 @@
   line-height: 1.5;
 }
 
+
 /* Achievements Section */
 .summaryAchievements {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
 @media (min-width: 768px) {
   .summaryAchievements {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns on desktop */
   }
 }
 
@@ -687,12 +695,12 @@
   padding: 1.25rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   position: relative;
-  border-left: 4px solid #1B365D; /* Navy Blue */
+  border-left: 4px solid #1B365D; /* Navy Blue left border accent */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .achievement:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Lifts card on hover */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
@@ -700,7 +708,7 @@
   width: 2.5rem;
   height: 2.5rem;
   background: rgba(27, 54, 93, 0.1); /* Light Navy Blue */
-  border-radius: 9999px;
+  border-radius: 9999px; /* Circular icon container */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -731,7 +739,7 @@
 
 @media (min-width: 1024px) {
   .skillsContainer {
-    flex-direction: row;
+    flex-direction: row; /* Side-by-side layout on larger screens */
   }
 }
 
@@ -741,7 +749,7 @@
 
 @media (min-width: 1024px) {
   .skillsHalf {
-    width: 50%;
+    width: 50%; /* Each half takes 50% on desktop */
   }
 }
 
@@ -760,7 +768,7 @@
 
 .skillCard:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* Subtle lift on hover */
 }
 
 .skillCardButton {
@@ -806,7 +814,7 @@
 
 @media (min-width: 1024px) {
   .experienceContainer {
-    flex-direction: row;
+    flex-direction: row; /* Side-by-side layout on larger screens */
   }
 }
 
@@ -816,7 +824,7 @@
 
 @media (min-width: 1024px) {
   .timelineContainer {
-    width: 40%;
+    width: 40%; /* Timeline takes 40% of width on desktop */
   }
 }
 
@@ -826,13 +834,13 @@
 
 @media (min-width: 1024px) {
   .detailsContainer {
-    width: 60%;
+    width: 60%; /* Details take 60% of width on desktop */
   }
 }
 
 .timeline {
   position: relative;
-  border-left: 2px solid #1B365D; /* Navy Blue */
+  border-left: 2px solid #1B365D; /* Navy Blue vertical timeline */
   padding-left: 1.5rem;
   padding-bottom: 2rem;
   margin-left: 1rem;
@@ -852,7 +860,7 @@
 }
 
 .timelineItem:hover {
-  transform: translateX(5px);
+  transform: translateX(5px); /* Shift to right on hover */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: rgba(27, 54, 93, 0.05);
 }
@@ -868,14 +876,14 @@
   width: 1rem;
   height: 1rem;
   background-color: #1B365D; /* Navy Blue */
-  border-radius: 9999px;
+  border-radius: 9999px; /* Circular marker */
   left: -2rem;
   border: 4px solid white;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .timelineItem:hover .timelineMarker {
-  transform: scale(1.2);
+  transform: scale(1.2); /* Grows marker on hover */
   background-color: #2C2F33; /* Charcoal Black */
 }
 
@@ -901,7 +909,7 @@
 .expandIcon {
   margin-left: auto;
   margin-top: 0.5rem;
-  color: #1B365D;
+  color: #1B365D; /* Navy Blue */
 }
 
 .experienceCard {
@@ -915,7 +923,7 @@
 }
 
 .experienceCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Lifts card on hover */
 }
 
 .experiencePrompt {
@@ -923,7 +931,7 @@
   height: 200px;
   align-items: center;
   justify-content: center;
-  color: #4A4D52;
+  color: #4A4D52; /* Steel Gray */
   font-style: italic;
   background-color: rgba(27, 54, 93, 0.05);
   border-radius: 0.5rem;
@@ -950,7 +958,7 @@
 
 @media (min-width: 1024px) {
   .projectsContainer {
-    flex-direction: row;
+    flex-direction: row; /* Side-by-side layout on larger screens */
   }
 }
 
@@ -966,7 +974,7 @@
 }
 
 .progressBarContainer:hover {
-  transform: translateX(5px);
+  transform: translateX(5px); /* Shifts right on hover */
 }
 
 .progressBarLabel {
@@ -995,6 +1003,7 @@
   transition: width 1s ease-in-out;
 }
 
+/* Different gradient colors for different progress bars */
 .completionRate {
   background: linear-gradient(to right, #1B365D, #2C2F33); /* Navy Blue to Charcoal Black */
   width: 94%;
@@ -1026,13 +1035,13 @@
 
 .highlightCards {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
   gap: 1rem;
 }
 
 @media (min-width: 768px) {
   .highlightCards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns on desktop */
   }
 }
 
@@ -1045,10 +1054,11 @@
 }
 
 .highlightCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Lifts card on hover */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+/* Different background gradients for different project highlight cards */
 .highlightCardLehkwiya {
   background: linear-gradient(to bottom right, rgba(27, 54, 93, 0.05), rgba(27, 54, 93, 0.1)); /* Light Navy Blue */
 }
@@ -1065,6 +1075,7 @@
   background: linear-gradient(to bottom right, rgba(74, 77, 82, 0.05), rgba(74, 77, 82, 0.1)); /* Light Steel Gray */
 }
 
+/* Different text colors for different project highlight card titles */
 .highlightCardTitleLehkwiya {
   font-weight: 700;
   color: #1B365D; /* Navy Blue */
@@ -1092,13 +1103,13 @@
 /* Education Section */
 .educationGrid {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
   gap: 1.5rem;
 }
 
 @media (min-width: 768px) {
   .educationGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns on desktop */
   }
 }
 
@@ -1111,7 +1122,7 @@
 }
 
 .educationCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Lifts card on hover */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
@@ -1148,9 +1159,10 @@
   color: #4A4D52; /* Steel Gray */
 }
 
+
 /* Footer */
 .footer {
-  background: linear-gradient(to right, #1B365D, #2C2F33); /* Navy Blue to Charcoal Black */
+  background: linear-gradient(to right, #1B365D, #2C2F33); /* Navy Blue to Charcoal Black gradient */
   color: white;
   padding: 1.5rem;
   width: 100%;
@@ -1165,13 +1177,13 @@
 
 @media (min-width: 768px) {
   .footerContent {
-    padding: 0 2rem;
+    padding: 0 2rem; /* More padding on desktop */
   }
 }
 
 /* Utility Classes */
 .lucideIcon {
-  flex-shrink: 0;
+  flex-shrink: 0; /* Prevents icon from shrinking */
 }
 
 /* Animation Effects */
@@ -1228,7 +1240,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1243,7 +1255,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   padding: 1.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   max-height: 80vh;
-  overflow-y: auto;
+  overflow-y: auto; /* Scrollable if content is too tall */
 }
 
 .printModalHeader {
@@ -1297,7 +1309,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
 }
 
 .checkboxCustom {
-  appearance: none;
+  appearance: none; /* Removes default checkbox */
   width: 1.25rem;
   height: 1.25rem;
   border: 2px solid #4A4D52; /* Steel Gray */
@@ -1313,7 +1325,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
 }
 
 .checkboxCustom:checked::after {
-  content: '';
+  content: ''; /* Creates custom checkmark */
   position: absolute;
   left: 6px;
   top: 2px;
@@ -1469,6 +1481,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   background-color: #1B365D; /* Navy Blue */
 }
 
+/* ====== PRINT STYLES ====== */
 /* Enhanced Print Styles for A4 Portrait Format */
 @media print {
   /* Global print reset */
@@ -1483,8 +1496,8 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   
   /* A4 adjustments */
   html, body {
-    width: 210mm;
-    height: 297mm;
+    width: 210mm; /* A4 width */
+    height: 297mm; /* A4 height */
     font-size: 10pt !important; /* Reduced base font size for print */
   }
   
@@ -1501,11 +1514,11 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   
   /* Transformed header for print */
   .header {
-    background: none !important;
-    color: #1B365D !important;
+    background: none !important; /* Removes gradient background */
+    color: #1B365D !important; /* Changes text to navy */
     padding: 10mm 0 3mm 0 !important;
     margin: 0 !important;
-    border-bottom: 0.5pt solid #D1D5DB !important;
+    border-bottom: 0.5pt solid #D1D5DB !important; /* Thin border at bottom */
   }
   
   .headerContent {
@@ -1522,7 +1535,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   }
   
   .profileImage {
-    width: 25mm !important;
+    width: 25mm !important; /* Smaller profile image */
     height: 25mm !important;
     border: 1pt solid #D1D5DB !important;
   }
@@ -1540,7 +1553,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   }
   
   .contactInfo {
-    font-size: 8pt !important;
+    font-size: 8pt !important; /* Smaller contact info */
     gap: 1mm !important;
   }
   
@@ -1560,7 +1573,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   [id^="projects-section"],
   [id^="education-section"] {
     display: block !important;
-    page-break-inside: avoid !important;
+    page-break-inside: avoid !important; /* Avoids breaking sections across pages */
     margin-bottom: 8mm !important;
   }
   
@@ -1576,16 +1589,15 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
     padding: 5mm !important;
     margin-bottom: 8mm !important;
     page-break-inside: avoid !important;
-    break-inside: avoid !important;
+    break-inside: avoid !important; /* Modern equivalent of page-break-inside */
     background-color: white !important;
   }
   
   /* Summary hero transformed for print */
   .summaryHero {
-    background: none !important;
+    background: none !important; /* Removes gradient background */
     padding: 0 !important;
     position: relative !important;
-    //border-bottom: 0.5pt solid #D1D5DB !important;
     margin-bottom: 5mm !important;
   }
   
@@ -1667,7 +1679,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
     font-size: 14pt !important;
     color: #1B365D !important;
     margin-bottom: 3mm !important;
-    border-bottom: 0.5pt solid #C4A87C !important;
+    border-bottom: 0.5pt solid #C4A87C !important; /* Gold border */
     padding-bottom: 1mm !important;
   }
   
@@ -1714,7 +1726,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   }
   
   .metricCard::before {
-    display: none !important;
+    display: none !important; /* Removes colored top border */
   }
   
   .metricTitle {
@@ -1740,7 +1752,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   }
   
   .metricBar {
-    height: 3pt !important;
+    height: 3pt !important; /* Thinner bars */
     margin: 1mm 0 !important;
   }
   
@@ -1749,7 +1761,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   }
   
   .metricComparison {
-    font-size: 6pt !important;
+    font-size: 6pt !important; /* Very small comparison text */
     margin-top: 1mm !important;
   }
   
@@ -1764,7 +1776,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   .achievement {
     padding: 2mm !important;
     border: 0.5pt solid #D1D5DB !important;
-    border-left: 1.5pt solid #1B365D !important;
+    border-left: 1.5pt solid #1B365D !important; /* Navy accent */
   }
   
   .achievementIcon {
@@ -1831,11 +1843,11 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   }
   
   .timelineContainer {
-    width: 25% !important;
+    width: 25% !important; /* Narrower timeline in print */
   }
   
   .detailsContainer {
-    width: 75% !important;
+    width: 75% !important; /* Wider details in print */
   }
   
   .timeline {
@@ -1955,12 +1967,12 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   
   /* Special optimizations for page breaks */
   h2, h3, h4 {
-    page-break-after: avoid !important;
+    page-break-after: avoid !important; /* Keep headings with their content */
   }
   
   p, li {
-    orphans: 3 !important;
-    widows: 3 !important;
+    orphans: 3 !important; /* Min lines at bottom of page */
+    widows: 3 !important; /* Min lines at top of next page */
   }
   
   /* Add page numbers */
@@ -1970,21 +1982,21 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   }
   
   @page :first {
-    margin-top: 0;
+    margin-top: 0; /* No top margin on first page */
   }
   
   /* Page-specific break control */
   #skills-section {
-    page-break-before: always !important;
+    page-break-before: always !important; /* Force skills to start on new page */
   }
   
   #experience-section {
-    page-break-before: always !important;
+    page-break-before: always !important; /* Force experience to start on new page */
   }
   
   #projects-section,
   #education-section {
-    page-break-before: auto !important;
+    page-break-before: auto !important; /* Let browser decide for these */
   }
   
   /* Optimize content for multi-page printing */
@@ -2090,7 +2102,6 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
 }
 
 /* PrintComponent.module.css improvements */
-
 .printComponent {
   position: fixed;
   bottom: 20px;
@@ -2320,583 +2331,3 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   }
 }
 
-/* Add these styles to your ExecutivePortfolio.module.css file */
-
-/* Experience section main container */
-.expandAllContainer {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
-}
-
-.expandAllLabel {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-}
-
-.expandAllCheckbox {
-  margin-right: 0.5rem;
-  cursor: pointer;
-}
-
-.checkboxText {
-  font-size: 0.9rem;
-  color: #4A4D52;
-}
-
-/* Timeline container and items */
-.timelineContainer {
-  width: 100%;
-  position: relative;
-}
-
-.timelineContainer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 1.5rem;
-  width: 2px;
-  background-color: #1B365D; /* Navy Blue */
-  z-index: 0;
-}
-
-.experienceItem {
-  margin-bottom: 1.5rem;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  transition: box-shadow 0.2s ease;
-}
-
-.experienceItem:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Timeline header */
-.timelineHeader {
-  position: relative;
-  padding: 1rem 1.5rem 1rem 2.5rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.2s ease;
-}
-
-.timelineHeader:hover {
-  background-color: rgba(27, 54, 93, 0.05);
-}
-
-.timelineHeader.active {
-  background-color: rgba(27, 54, 93, 0.05);
-}
-
-.timelineMarker {
-  position: absolute;
-  width: 1rem;
-  height: 1rem;
-  background-color: #1B365D; /* Navy Blue */
-  border-radius: 50%;
-  left: 1rem;
-  border: 2px solid white;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-  z-index: 1;
-}
-
-.timelineHeader:hover .timelineMarker {
-  transform: scale(1.2);
-  background-color: #2C2F33; /* Charcoal Black */
-}
-
-.timelineContent {
-  flex-grow: 1;
-}
-
-.timelineYear {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #1B365D; /* Navy Blue */
-}
-
-.timelineTitle {
-  font-weight: 700;
-  color: #2C2F33; /* Charcoal Black */
-}
-
-.timelineCompany {
-  color: #4A4D52; /* Steel Gray */
-  font-size: 0.875rem;
-}
-
-.expandIcon {
-  flex-shrink: 0;
-  color: #1B365D;
-}
-
-/* Experience details container */
-.experienceDetails {
-  padding: 0.5rem 1.5rem 1.5rem 2.5rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  background-color: rgba(250, 250, 252, 0.7);
-  animation: slideDown 0.3s ease-out;
-}
-
-.experienceCard {
-  padding-top: 1rem;
-}
-
-/* Card header and title styling */
-.cardTitle {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  font-weight: 700;
-  color: #1B365D; /* Navy Blue */
-  margin-bottom: 0.25rem;
-  position: relative;
-}
-
-.cardSubtitle {
-  color: #4A4D52; /* Steel Gray */
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-  font-style: italic;
-  display: flex;
-  align-items: center;
-}
-
-.cardSubtitle::before {
-  content: "";
-  width: 3px;
-  height: 0.9rem;
-  background-color: #C4A87C; /* Gold (Muted) */
-  margin-right: 0.5rem;
-  display: inline-block;
-  border-radius: 1px;
-}
-
-/* Project styling */
-.cardProject {
-  color: #2E6A4F; /* Deep Green */
-  font-weight: 500;
-  margin: 1rem 0;
-  padding: 0.75rem 1rem;
-  background-color: rgba(46, 106, 79, 0.05);
-  border-left: 3px solid #2E6A4F;
-  border-radius: 0 4px 4px 0;
-}
-
-/* Projects container */
-.projectsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.projectBox {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.2s ease;
-}
-
-.projectBox:hover {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
-}
-
-.projectName {
-  font-weight: 500;
-  color: #2C2F33; /* Charcoal Black */
-  flex: 1;
-}
-
-.projectValue {
-  font-size: 0.9rem;
-  color: #1B365D; /* Navy Blue */
-  background-color: rgba(27, 54, 93, 0.07);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-weight: 500;
-  white-space: nowrap;
-  margin-left: 1rem;
-}
-
-/* Section headers */
-.cardHeading {
-  font-weight: 600;
-  color: #2C2F33; /* Charcoal Black */
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  font-size: 1.1rem;
-}
-
-.cardHeading::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  background-color: #1B365D; /* Navy Blue */
-  opacity: 0.2;
-  margin-right: 0.5rem;
-  display: inline-block;
-  transform: rotate(45deg);
-}
-
-/* List styling */
-.cardList {
-  list-style-type: none;
-  padding-left: 1rem;
-  margin-bottom: 1.5rem;
-  color: #4A4D52; /* Steel Gray */
-}
-
-.cardList li {
-  margin-bottom: 0.75rem;
-  position: relative;
-  line-height: 1.5;
-  padding-left: 1rem;
-  transition: all 0.2s ease;
-}
-
-.cardList li::before {
-  content: "•";
-  color: #C4A87C; /* Gold (Muted) */
-  font-weight: bold;
-  position: absolute;
-  left: -0.5rem;
-}
-
-.cardList li:hover {
-  transform: translateX(3px);
-  color: #1B365D; /* Navy Blue */
-}
-
-/* Key achievement styling */
-.keyAchievement {
-  background-color: rgba(27, 54, 93, 0.03);
-  border-radius: 4px;
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 0.75rem;
-  transition: all 0.2s ease;
-  margin-left: -0.5rem;
-}
-
-.keyAchievement:hover {
-  background-color: rgba(27, 54, 93, 0.07);
-  transform: translateX(3px);
-}
-
-.keyAchievement::before {
-  content: "★";
-  color: #C4A87C; /* Gold (Muted) */
-  margin-right: 0.5rem;
-  font-size: 0.8rem;
-}
-
-/* Animation for the expanding details */
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .experienceDetails {
-    padding: 0.5rem 1rem 1.5rem 1.5rem;
-  }
-  
-  .projectBox {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .projectValue {
-    margin-top: 0.5rem;
-    margin-left: 0;
-  }
-}
-
-/* Experience Section Print Styles */
-@media print {
-  /* Experience section container */
-  #experience-section {
-    break-before: page !important;
-    margin: 0 !important;
-    padding: 0.5in 0 0 0 !important;
-    width: 100% !important;
-  }
-  
-  /* Hide expand all controls */
-  .expandAllContainer {
-    display: none !important;
-  }
-  
-  /* Show all experiences in print */
-  .experienceDetails {
-    display: block !important;
-    height: auto !important;
-    opacity: 1 !important;
-    animation: none !important;
-    background-color: transparent !important;
-    padding: 0.15in 0.2in 0.2in 0.3in !important;
-    border-top: 1px solid #eaeaea !important;
-  }
-  
-  /* Timeline container */
-  .timelineContainer {
-    position: relative !important;
-    width: 100% !important;
-  }
-  
-  /* Timeline connector */
-  .timelineContainer::before {
-    opacity: 0.4 !important;
-    left: 0.25in !important;
-  }
-  
-  /* Experience items */
-  .experienceItem {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-    margin-bottom: 0.3in !important;
-    border: 1px solid #D1D5DB !important;
-    box-shadow: none !important;
-  }
-  
-  /* Timeline headers */
-  .timelineHeader {
-    background-color: #f8f9fa !important;
-    padding: 0.1in 0.1in 0.1in 0.35in !important;
-    border-bottom: none !important;
-  }
-  
-  /* Timeline active state */
-  .timelineHeader.active {
-    background-color: #f0f4f8 !important;
-  }
-  
-  /* Timeline marker */
-  .timelineMarker {
-    left: 0.25in !important;
-    background-color: #1B365D !important;
-    border: 2px solid white !important;
-    width: 0.1in !important;
-    height: 0.1in !important;
-  }
-  
-  /* Timeline content */
-  .timelineContent {
-    padding-left: 0.05in !important;
-  }
-  
-  /* Timeline text */
-  .timelineYear {
-    font-size: 8pt !important;
-    color: #1B365D !important;
-  }
-  
-  .timelineTitle {
-    font-size: 10pt !important;
-    font-weight: bold !important;
-    color: #000 !important;
-  }
-  
-  .timelineCompany {
-    font-size: 8pt !important;
-    color: #4A4D52 !important;
-  }
-  
-  /* Hide expand icon */
-  .expandIcon {
-    display: none !important;
-  }
-  
-  /* Experience card */
-  .experienceCard {
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  
-  /* Card title & subtitle */
-  .cardTitle {
-    font-size: 10pt !important;
-    color: #1B365D !important;
-    margin-top: 0.1in !important;
-    margin-bottom: 0 !important;
-  }
-  
-  .cardSubtitle {
-    font-size: 8pt !important;
-    margin-bottom: 0.1in !important;
-  }
-  
-  .cardSubtitle::before {
-    height: 0.08in !important;
-    width: 0.05in !important;
-  }
-  
-  /* Project section */
-  .cardProject {
-    font-size: 8pt !important;
-    background-color: #f9fbfa !important;
-    border-left: 0.05in solid #2E6A4F !important;
-    margin: 0.1in 0 !important;
-    padding: 0.05in 0.1in !important;
-  }
-  
-  /* Projects container and boxes */
-  .projectsContainer {
-    margin-bottom: 0.1in !important;
-    gap: 0.05in !important;
-  }
-  
-  .projectBox {
-    padding: 0.08in !important;
-    margin-bottom: 0.05in !important;
-    page-break-inside: avoid !important;
-    display: flex !important;
-    flex-direction: row !important;
-    border: 1px solid #eaeaea !important;
-  }
-  
-  .projectName {
-    font-size: 8pt !important;
-    color: #000 !important;
-    margin-right: 0.1in !important;
-  }
-  
-  .projectValue {
-    font-size: 7pt !important;
-    background-color: #f0f4f8 !important;
-    color: #1B365D !important;
-    padding: 0.02in 0.05in !important;
-    white-space: nowrap !important;
-  }
-  
-  /* Section headings */
-  .cardHeading {
-    font-size: 9pt !important;
-    margin-top: 0.1in !important;
-    margin-bottom: 0.05in !important;
-    color: #1B365D !important;
-    border-bottom: 1px solid #eaeaea !important;
-    padding-bottom: 0.02in !important;
-  }
-  
-  .cardHeading::before {
-    content: "■" !important;
-    font-size: 7pt !important;
-    width: auto !important;
-    height: auto !important;
-    background-color: transparent !important;
-    transform: none !important;
-    margin-right: 0.05in !important;
-  }
-  
-  /* List styles */
-  .cardList {
-    margin-top: 0.05in !important;
-    margin-bottom: 0.1in !important;
-    padding-left: 0.1in !important;
-  }
-  
-  .cardList li {
-    font-size: 8pt !important;
-    line-height: 1.3 !important;
-    margin-bottom: 0.03in !important;
-    color: #000 !important;
-    padding-left: 0 !important;
-  }
-  
-  .cardList li::before {
-    content: "•" !important;
-    color: #000 !important;
-    left: -0.08in !important;
-  }
-  
-  /* Key achievements */
-  .keyAchievement {
-    background-color: #f8f8f8 !important;
-    border-left: 2px solid #C4A87C !important;
-    padding: 0.05in 0.08in !important;
-    margin-left: 0 !important;
-  }
-  
-  .keyAchievement::before {
-    content: "★" !important;
-    color: #C4A87C !important;
-  }
-  
-  /* Page break optimization */
-  .experienceItem {
-    break-after: auto !important;
-  }
-  
-  /* Start experience at the top of pages when possible */
-  .experienceItem:nth-of-type(4n+1) {
-    break-before: page !important;
-  }
-  
-  /* Keep headings with content */
-  .cardHeading {
-    break-after: avoid !important;
-  }
-  
-  /* Handle orphans and widows */
-  .cardList li {
-    orphans: 2 !important;
-    widows: 2 !important;
-  }
-  
-  /* Optimize space between items */
-  .cardList, .projectsContainer {
-    margin-top: 0.05in !important;
-  }
-  
-  /* Background colors for better print contrast */
-  .experienceCard, .timelineHeader, .experienceDetails {
-    background-color: #fff !important;
-  }
-  
-  /* Print-specific optimizations */
-  * {
-    text-shadow: none !important;
-    box-shadow: none !important;
-  }
-}
-
-/* Add or update these styles */
-
-.projectsAnalysisContainer {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.projectColumn {
-  flex: 1;
-  min-width: 0; /* Prevents flex items from overflowing */
-}
-
-@media (max-width: 768px) {
-  .projectsAnalysisContainer {
-    flex-direction: column;
-  }
-}

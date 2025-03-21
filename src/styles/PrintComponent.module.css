@@ -1,5 +1,13 @@
-/* PrintComponent.module.css improvements */
+/* 
+ * PrintComponent.module.css
+ * This file contains styles for the print functionality component
+ * It includes the floating print button, print menu UI, and print-specific rules
+ */
 
+/* 
+ * Main container for the print component - fixed position in bottom right
+ * This is the wrapper for the entire print UI that appears on screen
+ */
 .printComponent {
   position: fixed;
   bottom: 20px;
@@ -10,12 +18,16 @@
   border-radius: 8px;
 }
 
+/*
+ * Print button styling - triggers the print menu
+ * Primary button with navy blue background and hover effects
+ */
 .printButton {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: #1B365D; /* Match the main color scheme */
+  background-color: #1B365D; /* Match the main color scheme - Navy Blue */
   color: white;
   padding: 10px 16px;
   border: none;
@@ -26,19 +38,25 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Hover state for print button - darkens color and adds elevation */
 .printButton:hover {
-  background-color: #2C2F33; /* Match secondary color */
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background-color: #2C2F33; /* Match secondary color - Charcoal Black */
+  transform: translateY(-2px); /* Slight upward shift for interactive feel */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
 }
 
+/* Active state for print button - removes elevation when clicked */
 .printButton:active {
   transform: translateY(0);
 }
 
+/*
+ * Print menu dropdown container - appears when print button is clicked
+ * Positioned above the print button with animation
+ */
 .printMenu {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 10px); /* Positioned above the button with 10px gap */
   right: 0;
   width: 320px;
   background-color: #fff;
@@ -46,9 +64,10 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   z-index: 100;
   overflow: hidden;
-  animation: slideIn 0.2s ease-out;
+  animation: slideIn 0.2s ease-out; /* Entrance animation */
 }
 
+/* Animation for the menu appearance - slides up from below */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -60,72 +79,90 @@
   }
 }
 
+/*
+ * Print menu header - contains title and close button
+ * Light gray background with border
+ */
 .printMenuHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px;
-  border-bottom: 1px solid #e5e7eb;
-  background-color: #f8f9fa;
+  border-bottom: 1px solid #e5e7eb; /* Light gray border */
+  background-color: #f8f9fa; /* Very light gray background */
 }
 
+/* Title text for the print menu */
 .printMenuTitle {
   font-weight: 600;
-  color: #1B365D; /* Match main color */
+  color: #1B365D; /* Match main color - Navy Blue */
   font-size: 1rem;
 }
 
+/* Close button in the header - minimal styling with hover state */
 .closeButton {
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
   border: none;
-  color: #64748b;
+  color: #64748b; /* Medium gray */
   cursor: pointer;
   padding: 4px;
   border-radius: 4px;
   transition: background-color 0.2s ease;
 }
 
+/* Hover state for close button - adds background */
 .closeButton:hover {
-  background-color: #e5e7eb;
-  color: #1B365D; /* Match main color */
+  background-color: #e5e7eb; /* Light gray background */
+  color: #1B365D; /* Match main color - Navy Blue */
 }
 
+/*
+ * Container for sections checkboxes - scrollable if many sections
+ */
 .printSections {
-  max-height: 250px;
-  overflow-y: auto;
+  max-height: 250px; /* Limits height with many sections */
+  overflow-y: auto; /* Enables scrolling if content exceeds height */
   padding: 12px 16px;
 }
 
+/* Individual section item with checkbox and label */
 .sectionItem {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
 }
 
+/* Remove margin from last item */
 .sectionItem:last-child {
   margin-bottom: 0;
 }
 
+/*
+ * Custom checkbox styling - replaces default browser checkbox
+ * Custom appearance for better visual integration with design
+ */
 .sectionCheckbox {
-  appearance: none;
+  appearance: none; /* Removes default browser styling */
   width: 18px;
   height: 18px;
-  border: 2px solid #cbd5e1;
+  border: 2px solid #cbd5e1; /* Light blue-gray border */
   border-radius: 4px;
   margin-right: 10px;
   cursor: pointer;
-  position: relative;
+  position: relative; /* For positioning the check mark */
   transition: all 0.2s ease;
 }
 
+/* Checked state styling - fills background */
 .sectionCheckbox:checked {
-  background-color: #1B365D; /* Match main color */
-  border-color: #1B365D; /* Match main color */
+  background-color: #1B365D; /* Match main color - Navy Blue */
+  border-color: #1B365D; /* Match main color - Navy Blue */
 }
 
+/* Custom checkmark created with CSS - appears when checked */
 .sectionCheckbox:checked::after {
   content: "";
   position: absolute;
@@ -135,27 +172,32 @@
   height: 10px;
   border: solid white;
   border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  transform: rotate(45deg); /* Creates checkmark shape */
 }
 
+/* Label text next to checkbox */
 .sectionLabel {
   font-size: 0.95rem;
-  color: #334155;
+  color: #334155; /* Dark blue-gray */
   cursor: pointer;
 }
 
+/*
+ * Bottom action area - contains select all/none buttons and border
+ */
 .printActions {
   display: flex;
   justify-content: space-between;
   padding: 12px 16px;
-  border-top: 1px solid #e5e7eb;
-  background-color: #f8f9fa;
+  border-top: 1px solid #e5e7eb; /* Light gray border */
+  background-color: #f8f9fa; /* Very light gray background */
 }
 
+/* Select all/none action buttons - text only */
 .selectAction {
   background: none;
   border: none;
-  color: #1B365D; /* Match main color */
+  color: #1B365D; /* Match main color - Navy Blue */
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -163,20 +205,25 @@
   padding: 4px 8px;
 }
 
+/* Hover state for select action buttons */
 .selectAction:hover {
-  color: #2C2F33; /* Match secondary color */
+  color: #2C2F33; /* Match secondary color - Charcoal Black */
   text-decoration: underline;
 }
 
+/*
+ * Main print action button - primary call to action
+ * Full width button at bottom of menu
+ */
 .printAction {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: calc(100% - 32px);
+  width: calc(100% - 32px); /* Full width minus margins */
   margin: 0 16px 16px;
   padding: 10px;
-  background-color: #1B365D; /* Match main color */
+  background-color: #1B365D; /* Match main color - Navy Blue */
   color: white;
   border: none;
   border-radius: 6px;
@@ -185,46 +232,64 @@
   transition: all 0.2s ease;
 }
 
+/* Hover state for print action button - not applied when disabled */
 .printAction:hover:not(:disabled) {
-  background-color: #2C2F33; /* Match secondary color */
-  transform: translateY(-2px);
+  background-color: #2C2F33; /* Match secondary color - Charcoal Black */
+  transform: translateY(-2px); /* Slight elevation */
 }
 
+/* Active state for print action button - removes elevation */
 .printAction:active:not(:disabled) {
   transform: translateY(0);
 }
 
+/* Disabled state for print button - used when no sections selected */
 .printAction:disabled {
-  background-color: #94a3b8;
+  background-color: #94a3b8; /* Muted blue-gray */
   cursor: not-allowed;
   opacity: 0.7;
 }
 
-/* Print media query */
+/*
+ * PRINT-SPECIFIC STYLES
+ * These rules apply only when the browser is in print mode
+ */
 @media print {
+  /* Hide the print component completely when actually printing */
   .printComponent {
     display: none !important;
   }
   
-  /* Add class for print preparation */
+  /* 
+   * Special class for print preparation mode
+   * Applied to elements that should be hidden when printing
+   * Uses :global() to target classes outside this CSS module
+   */
   :global(.preparing-print) .printHidden {
     display: none !important;
   }
 }
 
-/* Responsive adjustments */
+/*
+ * RESPONSIVE ADJUSTMENTS
+ * Makes the component more compact on smaller screens
+ */
 @media (max-width: 768px) {
+  /* Adjust position for small screens */
   .printComponent {
     bottom: 15px;
     right: 15px;
   }
   
+  /* Smaller button on mobile */
   .printButton {
     padding: 8px 12px;
     font-size: 0.9rem;
   }
   
+  /* Narrower menu on mobile */
   .printMenu {
     width: 280px;
   }
 }
+

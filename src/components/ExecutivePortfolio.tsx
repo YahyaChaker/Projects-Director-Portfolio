@@ -24,6 +24,10 @@ const {
 const ExecutivePortfolio: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('summary');
   const [expandedSkill, setExpandedSkill] = useState<string | null>(null);
+  // Add a new state to track expanded experience items
+  const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
+  const [expandedExperiences, setExpandedExperiences] = useState<string[]>([]);
+  const [expandAll, setExpandAll] = useState<boolean>(false);
 
   // Print sections configuration
   const printSections = [
@@ -83,6 +87,27 @@ const ExecutivePortfolio: React.FC = () => {
       setExpandedSkill(skill);
     }
   };
+
+  // Toggle individual experience
+  const toggleExperience = (experience: string): void => {
+    if (expandedExperiences.includes(experience)) {
+      setExpandedExperiences(expandedExperiences.filter(exp => exp !== experience));
+    } else {
+      setExpandedExperiences([...expandedExperiences, experience]);
+    }
+  };
+
+  // Toggle expand all
+  const toggleExpandAll = (): void => {
+    if (expandAll) {
+      // Collapse all
+      setExpandedExperiences([]);
+    } else {
+      // Expand all
+      setExpandedExperiences(experienceData.map(job => job.title));
+    }
+    setExpandAll(!expandAll);
+  };
   
   return (
     <div className={styles.portfolioContainer}>
@@ -91,7 +116,7 @@ const ExecutivePortfolio: React.FC = () => {
         <div className={styles.headerContainer}>
           <div className={styles.headerContent}>
             <div className={styles.headerTextContent}>
-              <div className={styles.headerImgaeTitle}>
+              <div className={styles.headerImageTitle}>
                 <div className={styles.profileImageContainer}>
                   <img 
                     src='/Profile-Photo.jpg'
@@ -539,191 +564,257 @@ const ExecutivePortfolio: React.FC = () => {
           >
             <h2 className={styles.sectionTitleWithMargin}>Professional Experience</h2>
             
-            <div className={styles.experienceContainer}>
-              <div className={styles.timelineContainer}>
-                <div className={styles.timeline}>
-                  {experienceData.map((job, index) => (
-                    <div key={index} className={styles.timelineItem}>
-                      <div className={styles.timelineMarker}></div>
+            <div className={styles.expandAllContainer}>
+              <label className={styles.expandAllLabel}>
+                <input 
+                  type="checkbox" 
+                  checked={expandAll} 
+                  onChange={toggleExpandAll} 
+                  className={styles.expandAllCheckbox}
+                />
+                <span className={styles.checkboxText}>Expand All</span>
+              </label>
+            </div>
+            
+            <div className={styles.timelineContainer}>
+              {experienceData.map((job, index) => (
+                <div key={index} className={styles.experienceItem}>
+                  <div 
+                    className={`${styles.timelineHeader} ${expandedExperiences.includes(job.title) ? styles.active : ''}`}
+                    onClick={() => toggleExperience(job.title)}
+                  >
+                    <div className={styles.timelineMarker}></div>
+                    <div className={styles.timelineContent}>
                       <div className={styles.timelineYear}>{job.year}</div>
                       <div className={styles.timelineTitle}>{job.title}</div>
                       <div className={styles.timelineCompany}>{job.company}</div>
                     </div>
-                  ))}
+                    {expandedExperiences.includes(job.title) ? 
+                      <ChevronDown className={`${styles.lucideIcon} ${styles.expandIcon}`} size={16} /> : 
+                      <ChevronRight className={`${styles.lucideIcon} ${styles.expandIcon}`} size={16} />
+                    }
+                  </div>
+                  
+                  {/* Conditionally render the experience details directly under the timeline item */}
+                  {expandedExperiences.includes(job.title) && (
+                    <div className={styles.experienceDetails}>
+                      {/* FM Projects Director */}
+                      {job.title === 'FM Projects Director' && (
+                        <div className={styles.experienceCard}>
+                          <h3 className={styles.cardTitle}>FM Projects Director</h3>
+                          <div className={styles.cardSubtitle}>Elegancia Facilities Management, Qatar | May 2023 – Present</div>
+                          
+                          <h4 className={styles.cardHeading}>Projects</h4>
+                          <div className={styles.projectsContainer}>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>Qatari Diar - Lusail Commercial Boulevard: Property and Facility Management Services</div>
+                              <div className={styles.projectValue}>93M QAR | 320 Personnel</div>
+                            </div>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>Qatari Diar – Al Seef Towers: Operation & Maintenance Services</div>
+                              <div className={styles.projectValue}>14M QAR | 40 Personnel</div>
+                            </div>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>KMC – Korean Medical Center: Integrated Facilities Management</div>
+                              <div className={styles.projectValue}>9.5M QAR | 65 Personnel</div>
+                            </div>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>Qatar Diar – Pumping Stations: Operations and Maintenance for 19 pumping stations</div>
+                              <div className={styles.projectValue}>24M QAR | 72 Personnel</div>
+                            </div>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>QNB Tower: Integrated Facilities Management</div>
+                              <div className={styles.projectValue}>22.5M QAR | 132 Personnel</div>
+                            </div>
+                          </div>
+                          
+                          <h4 className={styles.cardHeading}>Responsibilities</h4>
+                          <ul className={styles.cardList}>
+                            <li>Planned, coordinated, and supervised the execution of projects.</li>
+                            <li>Managed project budgets, timelines, resources, and quality.</li>
+                            <li>Led the handover process and acted as a client representative.</li>
+                            <li>Communicated with stakeholders and clients.</li>
+                            <li>Ensured conformity with safety, environmental, and contractual obligations.</li>
+                            <li>Determined and eliminated project hazards and conflicts.</li>
+                            <li>Served as a source of leadership and direction for the project team and contractors.</li>
+                          </ul>
+                          
+                          <h4 className={styles.cardHeading}>Key Achievements</h4>
+                          <ul className={styles.cardList}>
+                            <li className={styles.keyAchievement}>Successfully resolved a critical documentation issue on the Lusail Boulevard project, improving reporting accuracy to 90% and eliminating disputed KPI deductions.</li>
+                            <li className={styles.keyAchievement}>Implemented a centralized resource management system, improving on-time completion rates from 78% to 94% across all projects.</li>
+                            <li className={styles.keyAchievement}>Developed a unified project management methodology and centralized procurement system.</li>
+                            <li className={styles.keyAchievement}>Established shared equipment pools, optimizing resource utilization.</li>
+                          </ul>
+                        </div>
+                      )}
+                      
+                      {/* Senior Facilities Manager */}
+                      {job.title === 'Senior Facilities Manager' && (
+                        <div className={styles.experienceCard}>
+                          <h3 className={styles.cardTitle}>Senior Facilities Manager</h3>
+                          <div className={styles.cardSubtitle}>Elegancia Facilities Management, Qatar | June 2019 – April 2023</div>
+                          
+                          <div className={styles.cardProject}>Project: Ministry of Interior – Head Quarter and Cyber Security Center (Operational Maintenance)</div>
+                          
+                          <h4 className={styles.cardHeading}>Responsibilities</h4>
+                          <ul className={styles.cardList}>
+                            <li>Led a team of 220 professionals, including an operations manager and engineers, to guarantee seamless maintenance of both hard and soft services.</li>
+                            <li>Negotiated and secured project bids and maintenance contracts, cultivating robust relationships with suppliers and subcontractors.</li>
+                            <li>Monitored vendor performance to ensure conformity to quality standards and timely, cost-effective service delivery.</li>
+                            <li>Assisted in the development of procedures, recruitment, and performance evaluation processes.</li>
+                            <li>Coordinated procurement of parts, services, and labor for projects.</li>
+                            <li>Implemented a Planned Preventive Maintenance system and ensured all reactive/corrective maintenance activities.</li>
+                            <li>Supervised the integration of the CAFAM system and closely followed up on daily activities at the site.</li>
+                          </ul>
+                          
+                          <h4 className={styles.cardHeading}>Key Achievements</h4>
+                          <ul className={styles.cardList}>
+                            <li className={styles.keyAchievement}>Achieved three-year contract renewal through exceptional performance and close collaboration with the tendering department.</li>
+                            <li className={styles.keyAchievement}>Spearheaded a project that ranked number one in terms of problem-free status and absence of penalties for three consecutive years.</li>
+                            <li className={styles.keyAchievement}>Implemented a tiered leadership approach and established daily operational briefings.</li>
+                            <li className={styles.keyAchievement}>Integrated a cloud-based CMMS system that increased preventative maintenance compliance from 76% to 98.5% within the first quarter.</li>
+                            <li className={styles.keyAchievement}>Established weekly alignment meetings with procurement stakeholders and developed comprehensive documentation.</li>
+                          </ul>
+                        </div>
+                      )}
+                      
+                      {/* MEP Construction Manager */}
+                      {job.title === 'MEP Construction Manager' && (
+                        <div className={styles.experienceCard}>
+                          <h3 className={styles.cardTitle}>MEP Construction Manager (Contract)</h3>
+                          <div className={styles.cardSubtitle}>Qatari Diar - Saudi Bin Laden Group (QD-SBG), Qatar | November 2018 – June 2019</div>
+                          
+                          <div className={styles.cardProject}>Project: Lekhwiya Head Quarter (Value ~ QAR 3 billion)</div>
+                          
+                          <h4 className={styles.cardHeading}>Responsibilities</h4>
+                          <ul className={styles.cardList}>
+                            <li>Led the successful handover of four buildings within a highly accelerated timeline, managing a team of 720.</li>
+                            <li>Ensured that all construction activities adhered to relevant laws and regulations.</li>
+                            <li>Acted as a key point of communication and coordination for construction scheduling.</li>
+                            <li>Utilized expertise in cost estimation and budget management to closely track and optimize costs.</li>
+                            <li>Monitored and optimized material and equipment costs throughout the preconstruction and construction phases.</li>
+                          </ul>
+                          
+                          <h4 className={styles.cardHeading}>Key Achievements</h4>
+                          <ul className={styles.cardList}>
+                            <li className={styles.keyAchievement}>Spearheaded the MEP completion, transforming progress from 10% to 100% within a 6-month contract period.</li>
+                            <li className={styles.keyAchievement}>Established a multi-tiered leadership structure, effectively managing a team of 720 personnel across 5 buildings and a storage facility.</li>
+                            <li className={styles.keyAchievement}>Implemented safety-conscious strategies that reduced safety incidents by 45% and improved team retention by 28%.</li>
+                          </ul>
+                        </div>
+                      )}
+                      
+                      {/* Operations and Maintenance Manager */}
+                      {job.title === 'Operations and Maintenance Manager' && (
+                        <div className={styles.experienceCard}>
+                          <h3 className={styles.cardTitle}>Operations and Maintenance Manager</h3>
+                          <div className={styles.cardSubtitle}>Al Jabor Realty / Swimming Pools & SPAs, Qatar | October 2016 – November 2018</div>
+                          
+                          <h4 className={styles.cardHeading}>Responsibilities</h4>
+                          <ul className={styles.cardList}>
+                            <li>Utilized analytical and managerial skills to identify and address areas of budget inefficiency.</li>
+                            <li>Managed all facility operations and maintenance.</li>
+                            <li>Developed and managed a comprehensive facilities operating budget.</li>
+                            <li>Directed and inspected facilities for compliance with regulatory guidelines.</li>
+                          </ul>
+                          
+                          <h4 className={styles.cardHeading}>Key Achievements</h4>
+                          <ul className={styles.cardList}>
+                            <li className={styles.keyAchievement}>Addressed budget inefficiencies by conducting detailed cost-benefit analyses and implementing zero-based budgeting.</li>
+                            <li className={styles.keyAchievement}>Implemented personnel changes that reduced payroll expenses by 18% while increasing productivity by 22%.</li>
+                            <li className={styles.keyAchievement}>Improved departmental NPS scores by 15 points through process optimization.</li>
+                            <li className={styles.keyAchievement}>Developed a multi-tiered budget tracking system and customized financial dashboards.</li>
+                            <li className={styles.keyAchievement}>Generated over 1M QAR in annual cost savings through strategic contract restructuring.</li>
+                          </ul>
+                        </div>
+                      )}
+                      
+                      {/* Project Manager - MEP and Instrumentation */}
+                      {job.title === 'Project Manager - MEP and Instrumentation' && (
+                        <div className={styles.experienceCard}>
+                          <h3 className={styles.cardTitle}>Project Manager - MEP and Instrumentation</h3>
+                          <div className={styles.cardSubtitle}>Roots Energy and Engineering Services – Tadmur, Qatar | December 2013 – September 2016</div>
+                          
+                          <h4 className={styles.cardHeading}>Projects</h4>
+                          <div className={styles.projectsContainer}>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>EPIC For Replacement of Variable Speed Drive Systems and Soft Starter Units at Production Stations and RG Plant in Dukhan Field</div>
+                              <div className={styles.projectValue}>30M QAR</div>
+                            </div>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>EPIC Of Three Instrument PCRS At NGL-3, Gas Operations, Mesaieed</div>
+                              <div className={styles.projectValue}>50M QAR</div>
+                            </div>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>Replacement of existing pilot wire protection relays with new Numerical Protection Relays at QP Refinery, Mesaieed</div>
+                              <div className={styles.projectValue}>25M QAR</div>
+                            </div>
+                          </div>
+                          
+                          <h4 className={styles.cardHeading}>Responsibilities</h4>
+                          <ul className={styles.cardList}>
+                            <li>Managed the MEP aspects of 3 projects simultaneously.</li>
+                            <li>Ensured projects on-time handover with no delays after leading pre-commissioning and commissioning.</li>
+                            <li>Reviewed, approved, and implemented all engineering documents, reports, standards, and drawings.</li>
+                            <li>Arranged and scheduled technical and managerial meetings with clients and internal meetings.</li>
+                            <li>Prepared and maintained yearly project cash flow.</li>
+                            <li>Led preparation and submittal of preliminary documentation.</li>
+                            <li>Reviewed pre-qualifications and proposals of subcontractors.</li>
+                            <li>Prepared the Techno-commercial Bid Evaluation.</li>
+                          </ul>
+                        </div>
+                      )}
+                      
+                      {/* Senior Electrical Engineer */}
+                      {job.title === 'Senior Electrical Engineer' && (
+                        <div className={styles.experienceCard}>
+                          <h3 className={styles.cardTitle}>Senior Electrical Engineer (Oil & Gas)</h3>
+                          <div className={styles.cardSubtitle}>Roots Energy and Engineering Services – Tadmur, Qatar | April 2011 – November 2013</div>
+                          
+                          <h4 className={styles.cardHeading}>Projects</h4>
+                          <div className={styles.projectsContainer}>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>Head Works Construction for Doha South RPS and Associated Pipelines – Pumping Station (Electrical, Mechanical and Instrumentation)</div>
+                              <div className={styles.projectValue}>40M QAR</div>
+                            </div>
+                            <div className={styles.projectBox}>
+                              <div className={styles.projectName}>EPIC Of Automation Upgrade at Jaleha Degassing Station, Umm Bab and Diab</div>
+                              <div className={styles.projectValue}>80M QAR</div>
+                            </div>
+                          </div>
+                          
+                          <h4 className={styles.cardHeading}>Responsibilities</h4>
+                          <ul className={styles.cardList}>
+                            <li>Completed 90% of submittals within 3 months.</li>
+                            <li>Upgraded plant systems.</li>
+                            <li>Managed the night shift during shutdown.</li>
+                            <li>Design: Electrical Load Calculation, Adequacy Check Report, Cable Sizing, Lighting Calculation, Single Line Diagram, Earthing, lightening, etc.</li>
+                            <li>Engineering, Procurement, Installation and Commissioning of Electrical Systems.</li>
+                          </ul>
+                        </div>
+                      )}
+                      
+                      {/* Facility Manager */}
+                      {job.title === 'Facility Manager' && (
+                        <div className={styles.experienceCard}>
+                          <h3 className={styles.cardTitle}>Facility Manager</h3>
+                          <div className={styles.cardSubtitle}>Allied Maintenance Co. Ltd., Eastern Province, Saudi Arabia | September 2007 – May 2011</div>
+                          
+                          <h4 className={styles.cardHeading}>Responsibilities</h4>
+                          <ul className={styles.cardList}>
+                            <li>Responsible for preventive and corrective maintenance.</li>
+                            <li>Followed-up with facilities maintenance services and checked on all safety equipment.</li>
+                            <li>Assessed buildings and facilities in terms of the status and priority of maintenance needs.</li>
+                            <li>Provided leadership and guidance to the facilities team and supporting staff.</li>
+                            <li>Ensured safety and quality of all equipment and materials required for execution of maintenance works and contracts.</li>
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
-              </div>
-              
-              <div className={styles.detailsContainer}>
-                {/* FM Projects Director */}
-                <div className={styles.experienceCard}>
-                  <h3 className={styles.cardTitle}>FM Projects Director</h3>
-                  <div className={styles.cardSubtitle}>Elegancia Facilities Management, Qatar | May 2023 – Present</div>
-                  
-                  <h4 className={styles.cardHeading}>Projects:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Qatari Diar - Lusail Commercial Boulevard: Property and Facility Management Services. Project Value: 93M QAR, Total Manpower: 320.</li>
-                    <li>Qatari Diar – Al Seef Towers: Operation & Maintenance Services. Project Value: 14M QAR, Total Manpower: 40.</li>
-                    <li>KMC – Korean Medical Center: Integrated Facilities Management. Project Value: 9.5M QAR, Total Manpower: 65.</li>
-                    <li>Qatar Diar – Pumping Stations: Operations and Maintenance for 19 pumping stations. Project Value: 24M QAR, Total Manpower: 72.</li>
-                    <li>QNB Tower: Integrated Facilities Management. Project Value: 22.5M QAR, Total Manpower: 132.</li>
-                  </ul>
-                  
-                  <h4 className={styles.cardHeading}>Responsibilities:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Planned, coordinated, and supervised the execution of projects.</li>
-                    <li>Managed project budgets, timelines, resources, and quality.</li>
-                    <li>Led the handover process and acted as a client representative.</li>
-                    <li>Communicated with stakeholders and clients.</li>
-                    <li>Ensured conformity with safety, environmental, and contractual obligations.</li>
-                    <li>Determined and eliminated project hazards and conflicts.</li>
-                    <li>Served as a source of leadership and direction for the project team and contractors.</li>
-                  </ul>
-                  
-                  <h4 className={styles.cardHeading}>Key Achievements:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Successfully resolved a critical documentation issue on the Lusail Boulevard project, improving reporting accuracy to 90% and eliminating disputed KPI deductions.</li>
-                    <li>Implemented a centralized resource management system, improving on-time completion rates from 78% to 94% across all projects.</li>
-                    <li>Developed a unified project management methodology and centralized procurement system.</li>
-                    <li>Established shared equipment pools, optimizing resource utilization.</li>
-                  </ul>
-                </div>
-                
-                {/* Senior Facilities Manager */}
-                <div className={styles.experienceCard}>
-                  <h3 className={styles.cardTitle}>Senior Facilities Manager</h3>
-                  <div className={styles.cardSubtitle}>Elegancia Facilities Management, Qatar | June 2019 – April 2023</div>
-                  
-                  <div className={styles.cardProject}>Project: Ministry of Interior – Head Quarter and Cyber Security Center (Operational Maintenance)</div>
-                  
-                  <h4 className={styles.cardHeading}>Responsibilities:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Led a team of 220 professionals, including an operations manager and engineers, to guarantee seamless maintenance of both hard and soft services.</li>
-                    <li>Negotiated and secured project bids and maintenance contracts, cultivating robust relationships with suppliers and subcontractors.</li>
-                    <li>Monitored vendor performance to ensure conformity to quality standards and timely, cost-effective service delivery.</li>
-                    <li>Assisted in the development of procedures, recruitment, and performance evaluation processes.</li>
-                    <li>Coordinated procurement of parts, services, and labor for projects.</li>
-                    <li>Implemented a Planned Preventive Maintenance system and ensured all reactive/corrective maintenance activities.</li>
-                    <li>Supervised the integration of the CAFAM system and closely followed up on daily activities at the site.</li>
-                  </ul>
-                  
-                  <h4 className={styles.cardHeading}>Key Achievements:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Achieved three-year contract renewal through exceptional performance and close collaboration with the tendering department.</li>
-                    <li>Spearheaded a project that ranked number one in terms of problem-free status and absence of penalties for three consecutive years.</li>
-                    <li>Implemented a tiered leadership approach and established daily operational briefings.</li>
-                    <li>Integrated a cloud-based CMMS system that increased preventative maintenance compliance from 76% to 98.5% within the first quarter.</li>
-                    <li>Established weekly alignment meetings with procurement stakeholders and developed comprehensive documentation.</li>
-                  </ul>
-                </div>
-                
-                {/* MEP Construction Manager */}
-                <div className={styles.experienceCard}>
-                  <h3 className={styles.cardTitle}>MEP Construction Manager (Contract)</h3>
-                  <div className={styles.cardSubtitle}>Qatari Diar - Saudi Bin Laden Group (QD-SBG), Qatar | November 2018 – June 2019</div>
-                  
-                  <div className={styles.cardProject}>Project: Lekhwiya Head Quarter (Value ~ QAR 3 billion)</div>
-                  
-                  <h4 className={styles.cardHeading}>Responsibilities:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Led the successful handover of four buildings within a highly accelerated timeline, managing a team of 720.</li>
-                    <li>Ensured that all construction activities adhered to relevant laws and regulations.</li>
-                    <li>Acted as a key point of communication and coordination for construction scheduling.</li>
-                    <li>Utilized expertise in cost estimation and budget management to closely track and optimize costs.</li>
-                    <li>Monitored and optimized material and equipment costs throughout the preconstruction and construction phases.</li>
-                  </ul>
-                  
-                  <h4 className={styles.cardHeading}>Key Achievements:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Spearheaded the MEP completion, transforming progress from 10% to 100% within a 6-month contract period.</li>
-                    <li>Established a multi-tiered leadership structure, effectively managing a team of 720 personnel across 5 buildings and a storage facility.</li>
-                    <li>Implemented safety-conscious strategies that reduced safety incidents by 45% and improved team retention by 28%.</li>
-                  </ul>
-                </div>
-                
-                {/* Operations and Maintenance Manager */}
-                <div className={styles.experienceCard}>
-                  <h3 className={styles.cardTitle}>Operations and Maintenance Manager</h3>
-                  <div className={styles.cardSubtitle}>Al Jabor Realty / Swimming Pools & SPAs, Qatar | October 2016 – November 2018</div>
-                  
-                  <h4 className={styles.cardHeading}>Responsibilities:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Utilized analytical and managerial skills to identify and address areas of budget inefficiency.</li>
-                    <li>Managed all facility operations and maintenance.</li>
-                    <li>Developed and managed a comprehensive facilities operating budget.</li>
-                    <li>Directed and inspected facilities for compliance with regulatory guidelines.</li>
-                  </ul>
-                  
-                  <h4 className={styles.cardHeading}>Key Achievements:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Addressed budget inefficiencies by conducting detailed cost-benefit analyses and implementing zero-based budgeting.</li>
-                    <li>Implemented personnel changes that reduced payroll expenses by 18% while increasing productivity by 22%.</li>
-                    <li>Improved departmental NPS scores by 15 points through process optimization.</li>
-                    <li>Developed a multi-tiered budget tracking system and customized financial dashboards.</li>
-                    <li>Generated over 1M QAR in annual cost savings through strategic contract restructuring.</li>
-                  </ul>
-                </div>
-                
-                {/* Project Manager - MEP and Instrumentation */}
-                <div className={styles.experienceCard}>
-                  <h3 className={styles.cardTitle}>Project Manager - MEP and Instrumentation</h3>
-                  <div className={styles.cardSubtitle}>Roots Energy and Engineering Services – Tadmur, Qatar | December 2013 – September 2016</div>
-                  
-                  <h4 className={styles.cardHeading}>Projects:</h4>
-                  <ul className={styles.cardList}>
-                    <li>EPIC For Replacement of Variable Speed Drive Systems and Soft Starter Units at Production Stations and RG Plant in Dukhan Field (Value ~QAR 30 million).</li>
-                    <li>EPIC Of Three Instrument PCRS At NGL-3, Gas Operations, Mesaieed (Value ~ QAR 50 million).</li>
-                    <li>Replacement of existing pilot wire protection relays with new Numerical Protection Relays at QP Refinery, Mesaieed (Value ~QAR 25 million).</li>
-                  </ul>
-                  
-                  <h4 className={styles.cardHeading}>Responsibilities:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Managed the MEP aspects of 3 projects simultaneously.</li>
-                    <li>Ensured projects on-time handover with no delays after leading pre-commissioning and commissioning.</li>
-                    <li>Reviewed, approved, and implemented all engineering documents, reports, standards, and drawings.</li>
-                    <li>Arranged and scheduled technical and managerial meetings with clients and internal meetings.</li>
-                    <li>Prepared and maintained yearly project cash flow.</li>
-                    <li>Led preparation and submittal of preliminary documentation.</li>
-                    <li>Reviewed pre-qualifications and proposals of subcontractors.</li>
-                    <li>Prepared the Techno-commercial Bid Evaluation.</li>
-                  </ul>
-                </div>
-                
-                {/* Senior Electrical Engineer */}
-                <div className={styles.experienceCard}>
-                  <h3 className={styles.cardTitle}>Senior Electrical Engineer (Oil & Gas)</h3>
-                  <div className={styles.cardSubtitle}>Roots Energy and Engineering Services – Tadmur, Qatar | April 2011 – November 2013</div>
-                  
-                  <h4 className={styles.cardHeading}>Projects:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Head Works Construction for Doha South RPS and Associated Pipelines – Pumping Station (Electrical, Mechanical and Instrumentation) (~ QAR 40 million).</li>
-                    <li>EPIC Of Automation Upgrade at Jaleha Degassing Station, Umm Bab and Diab (~QAR 80 million).</li>
-                  </ul>
-                  
-                  <h4 className={styles.cardHeading}>Responsibilities:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Completed 90% of submittals within 3 months.</li>
-                    <li>Upgraded plant systems.</li>
-                    <li>Managed the night shift during shutdown.</li>
-                    <li>Design: Electrical Load Calculation, Adequacy Check Report, Cable Sizing, Lighting Calculation, Single Line Diagram, Earthing, lightening, etc.</li>
-                    <li>Engineering, Procurement, Installation and Commissioning of Electrical Systems.</li>
-                  </ul>
-                </div>
-                
-                {/* Facility Manager */}
-                <div className={styles.experienceCard}>
-                  <h3 className={styles.cardTitle}>Facility Manager</h3>
-                  <div className={styles.cardSubtitle}>Allied Maintenance Co. Ltd., Eastern Province, Saudi Arabia | September 2007 – May 2011</div>
-                  
-                  <h4 className={styles.cardHeading}>Responsibilities:</h4>
-                  <ul className={styles.cardList}>
-                    <li>Responsible for preventive and corrective maintenance.</li>
-                    <li>Followed-up with facilities maintenance services and checked on all safety equipment.</li>
-                    <li>Assessed buildings and facilities in terms of the status and priority of maintenance needs.</li>
-                    <li>Provided leadership and guidance to the facilities team and supporting staff.</li>
-                    <li>Ensured safety and quality of all equipment and materials required for execution of maintenance works and contracts.</li>
-                  </ul>
-                </div>
-              </div>
+              ))}
             </div>
           </section>
           
@@ -734,8 +825,8 @@ const ExecutivePortfolio: React.FC = () => {
           >
             <h2 className={styles.sectionTitleWithMargin}>Projects Portfolio Analysis</h2>
             
-            <div className={styles.projectsContainer}>
-              <div className={styles.skillsHalf}>
+            <div className={styles.projectsAnalysisContainer}>
+              <div className={styles.projectColumn}>
                 <h3 className={styles.subheading}>Current Projects Value Distribution (Millions QAR)</h3>
                 <div className={styles.chartContainer}>
                   <ResponsiveContainer width="100%" height="100%">
@@ -760,7 +851,7 @@ const ExecutivePortfolio: React.FC = () => {
                 </div>
               </div>
               
-              <div className={styles.skillsHalf}>
+              <div className={styles.projectColumn}>
                 <h3 className={styles.subheading}>Project Management Metrics</h3>
                 <div className={styles.projectMetricsContainer}>
                   <div className={styles.progressBarContainer}>
