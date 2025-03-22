@@ -1,0 +1,1334 @@
+/**
+ * PrintStyles.css - Enhanced for A4 Portrait Layout
+ * Comprehensive print stylesheet for the Executive Portfolio
+ * 
+ * This stylesheet transforms the interactive web portfolio into a professional
+ * print document optimized for A4 paper size (210mm × 297mm)
+ * 
+ * FEATURES:
+ * - Precise A4 paper dimensions and margins
+ * - Intelligent page breaks and content flow
+ * - Ink-saving color transformations
+ * - Optimized typography for print legibility
+ * - Enhanced component-specific print treatments
+ */
+
+ @media print {
+    /***********************************************************************
+     * 1. GLOBAL PRINT RESET & DOCUMENT SETUP
+     * Reset all default styles and establish base print parameters
+     ***********************************************************************/
+    * {
+      margin: 0 !important;
+      padding: 0 !important;
+      transition: none !important;
+      animation: none !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    
+    /* A4 Paper Size Configuration */
+    @page {
+      size: A4 portrait; /* 210mm × 297mm */
+      margin: 12mm 10mm; /* Standard document margins */
+    }
+    
+    /* First page can have different margins if needed */
+    @page :first {
+      margin-top: 10mm;
+    }
+    
+    /* HTML/Body base setup */
+    html, body {
+      width: 210mm;
+      height: 297mm;
+      font-size: 10pt !important; /* Base font size for print */
+      -webkit-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale !important;
+      color: #000000 !important;
+      line-height: 1.4 !important;
+      background-color: white !important;
+    }
+    
+    /* Main portfolio container */
+    .portfolioContainer {
+      background-color: white !important;
+      padding: 0 !important;
+      position: relative !important;
+      width: 100% !important;
+    }
+    
+    /* Hide non-printable elements */
+    .printButton, .nav, .footer, .summaryHeroPattern, .printComponent {
+      display: none !important;
+    }
+  
+    /* Apply print-only watermark to all pages */
+    .portfolioContainer::after {
+      content: "Yahya Chaker • Projects Director";
+      position: fixed;
+      bottom: 5mm;
+      right: 8mm;
+      font-size: 7pt;
+      color: #D1D5DB;
+      opacity: 0.5;
+      z-index: 9999 !important;
+    }
+    
+    /***********************************************************************
+     * 2. TYPOGRAPHY & TEXT FORMATTING
+     * Optimize all text elements for print legibility and contrast
+     ***********************************************************************/
+    
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+      color: #1B365D !important; /* Navy blue for all headings */
+    }
+    
+    h1, .title {
+      font-size: 16pt !important;
+      margin-bottom: 3mm !important;
+    }
+    
+    h2, .sectionTitleWithMargin {
+      font-size: 14pt !important;
+      margin-bottom: 3mm !important;
+      border-bottom: 0.5pt solid #C4A87C !important; /* Gold underline */
+      padding-bottom: 1mm !important;
+    }
+    
+    h3, .subheading {
+      font-size: 12pt !important;
+      margin-top: 3mm !important;
+      margin-bottom: 2mm !important;
+    }
+    
+    h4, .cardHeading {
+      font-size: 11pt !important;
+      margin-top: 2mm !important;
+      margin-bottom: 1.5mm !important;
+    }
+    
+    /* Paragraph text */
+    p, .summaryText, li, td, div {
+      font-size: 9pt !important;
+      line-height: 1.4 !important;
+      color: #333333 !important; /* Dark gray for better contrast */
+      orphans: 3 !important; /* Minimum lines at bottom of page */
+      widows: 3 !important;  /* Minimum lines at top of page */
+    }
+    
+    /* Emphasized text */
+    strong, b, .highlightNumber {
+      font-weight: 700 !important;
+      color: #1B365D !important; /* Navy for emphasis */
+    }
+    
+    /* Secondary text */
+    .subtitle, .timelineCompany, .metricLabel, .highlightLabel, 
+    .cardSubtitle, .timelineYear, .educationField {
+      font-size: 8pt !important;
+      color: #4A4D52 !important; /* Steel gray */
+    }
+    
+    /* Very small text elements */
+    .metricSubheading, .progressBarText:first-child, .metricComparison {
+      font-size: 7pt !important;
+      color: #4A4D52 !important;
+    }
+    
+    /* Link styling for print */
+    a, a:visited {
+      color: #1B365D !important;
+      text-decoration: none !important;
+    }
+    
+    /***********************************************************************
+     * 3. LAYOUT CONTAINERS & STRUCTURAL ELEMENTS
+     * Control the main sections and their positioning on printed pages
+     ***********************************************************************/
+    
+    /* Main content container */
+    .main, .mainContainer {
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+    }
+    
+    /* Section containers - general styling */
+    .section, .summarySection {
+      border: 0.5pt solid #D1D5DB !important; /* Light border */
+      border-radius: 2mm !important;
+      padding: 5mm !important;
+      margin-bottom: 8mm !important;
+      page-break-inside: avoid !important; /* Try to keep sections together */
+      break-inside: avoid !important;
+      background-color: white !important;
+      position: relative !important;
+    }
+    
+    /* Force page breaks on major sections */
+    #skills-section,
+    #experience-section,
+    #projects-section,
+    #education-section {
+      page-break-before: always !important;
+      break-before: page !important;
+      margin-top: 0 !important;
+      padding-top: 5mm !important;
+    }
+    
+    /* Ensure all selected sections are visible for print */
+    [id^="summary-section"],
+    [id^="skills-section"],
+    [id^="experience-section"],
+    [id^="projects-section"],
+    [id^="education-section"] {
+      display: block !important;
+    }
+    
+    /* Applied to sections that should not be printed */
+    .noPrint {
+      display: none !important;
+    }
+    
+    /* Two-column layouts */
+    .skillsContainer,
+    .projectsAnalysisContainer,
+    .highlightCards,
+    .educationGrid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 3mm !important;
+    }
+    
+    /* Special case for summary layout */
+    .summaryHighlights {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 2mm !important;
+      margin-top: 3mm !important;
+      border-top: 0.5pt dashed #D1D5DB !important;
+      padding-top: 3mm !important;
+    }
+    
+    /***********************************************************************
+     * 4. HEADER SECTION
+     * Transform the web header into a professional letterhead
+     ***********************************************************************/
+    
+    /* Header container */
+    .header {
+      background: none !important; /* Remove dark background */
+      color: #1B365D !important;
+      padding: 0 0 5mm 0 !important;
+      margin: 0 !important;
+      border-bottom: 0.75pt solid #D1D5DB !important;
+      position: relative !important;
+    }
+    
+    /* Header content layout */
+    .headerContent {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      gap: 5mm !important;
+    }
+    
+    /* Profile image and name container */
+    .headerImageTitle {
+      display: flex !important;
+      align-items: center !important;
+      gap: 5mm !important;
+    }
+    
+    /* Profile image */
+    .profileImage {
+      width: 22mm !important;
+      height: 22mm !important;
+      border-radius: 50% !important;
+      border: 0.75pt solid #D1D5DB !important;
+    }
+    
+    /* Name and title */
+    .title {
+      font-size: 16pt !important;
+      color: #1B365D !important;
+      margin: 0 !important;
+    }
+    
+    .subtitle {
+      font-size: 11pt !important;
+      color: #4A4D52 !important;
+      margin: 1mm 0 0 0 !important;
+    }
+    
+    /* Contact information */
+    .contactInfo {
+      font-size: 8pt !important;
+      gap: 1mm !important;
+      max-width: 65mm !important;
+      line-height: 1.4 !important;
+    }
+    
+    .contactItem {
+      display: flex !important;
+      align-items: center !important;
+      gap: 1.5mm !important;
+    }
+    
+    /* Icons in contact info */
+    .contactItem .lucideIcon {
+      width: 3mm !important;
+      height: 3mm !important;
+      color: #1B365D !important;
+    }
+    
+    /***********************************************************************
+     * 5. EXECUTIVE SUMMARY SECTION
+     * Transform the dynamic hero section into an elegant summary front page
+     ***********************************************************************/
+    
+    /* Summary section special styling */
+    .summarySection {
+      border: none !important;
+      padding: 0 !important;
+      margin-top: 5mm !important;
+    }
+    
+    /* Hero section transformation */
+    .summaryHero {
+      background: none !important;
+      padding: 0 !important;
+      position: relative !important;
+      margin-bottom: 5mm !important;
+      border-bottom: 0.5pt dashed #D1D5DB !important;
+      padding-bottom: 5mm !important;
+    }
+    
+    .summaryHeroContent {
+      padding: 0 !important;
+    }
+    
+    .summaryHeadline {
+      font-size: 9pt !important;
+      color: #1B365D !important;
+      letter-spacing: 0.5pt !important;
+      text-transform: uppercase !important;
+    }
+    
+    .summaryTitle {
+      font-size: 16pt !important;
+      color: #1B365D !important;
+      margin: 1mm 0 2mm 0 !important;
+      line-height: 1.2 !important;
+    }
+    
+    .summaryTagline {
+      font-size: 10pt !important;
+      font-style: italic !important;
+      color: #4A4D52 !important;
+      margin-bottom: 3mm !important;
+      border-left: 1pt solid #C4A87C !important; /* Gold accent line */
+      padding-left: 2mm !important;
+    }
+    
+    /* Highlight boxes - key statistics */
+    .summaryHighlight {
+      flex: none !important;
+      width: auto !important;
+      height: auto !important;
+      min-height: 18mm !important;
+      background: none !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      padding: 2mm !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    
+    .highlightNumber {
+      font-size: 14pt !important;
+      color: #1B365D !important;
+      margin-bottom: 1mm !important;
+    }
+    
+    .highlightLabel {
+      font-size: 7pt !important;
+      color: #4A4D52 !important;
+      text-transform: uppercase !important;
+      text-align: center !important;
+    }
+    
+    /* Main content of summary */
+    .summaryContent {
+      padding: 0 !important;
+    }
+    
+    .summaryText {
+      font-size: 9pt !important;
+      color: #4A4D52 !important;
+      margin-bottom: 3mm !important;
+      text-align: justify !important;
+    }
+    
+    .summaryText strong {
+      color: #1B365D !important;
+    }
+    
+    /***********************************************************************
+     * 6. METRICS & PERFORMANCE INDICATORS
+     * Transform interactive metrics into print-friendly data visualization
+     ***********************************************************************/
+    
+    /* Metrics section container */
+    .metricsSection {
+      padding: 0 !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 2mm !important;
+      overflow: hidden !important;
+      margin: 5mm 0 !important;
+      background-color: #FAFAFA !important; /* Very light gray background */
+    }
+    
+    /* Metrics header area */
+    .metricsSectionHeader {
+      padding: 3mm !important;
+      border-bottom: 0.5pt solid #D1D5DB !important;
+      background-color: #F5F5F5 !important;
+    }
+    
+    .metricsHeading {
+      font-size: 11pt !important;
+      color: #1B365D !important;
+      margin-bottom: 1mm !important;
+      font-weight: bold !important;
+    }
+    
+    .metricsSubheading {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      font-style: italic !important;
+    }
+    
+    /* Metrics grid layout */
+    .metricsGrid {
+      display: grid !important;
+      grid-template-columns: repeat(5, 1fr) !important;
+      gap: 2mm !important;
+      padding: 3mm !important;
+    }
+    
+    /* Individual metric cards */
+    .metricCard {
+      padding: 2mm !important;
+      background-color: white !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      min-height: 20mm !important;
+      position: relative !important;
+    }
+    
+    /* Top border indicator by metric type */
+    .maintenance::after { 
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 0.75mm !important;
+      background: rgba(46, 106, 79, 0.7) !important; /* Deep Green */
+    }
+    
+    .completion::after { 
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 0.75mm !important;
+      background: rgba(196, 168, 124, 0.7) !important; /* Gold */
+    }
+    
+    .safety::after { 
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 0.75mm !important;
+      background: rgba(27, 54, 93, 0.7) !important; /* Navy Blue */
+    }
+    
+    .retention::after { 
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 0.75mm !important;
+      background: rgba(74, 77, 82, 0.7) !important; /* Steel Gray */
+    }
+    
+    .cost::after { 
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 0.75mm !important;
+      background: rgba(44, 47, 51, 0.7) !important; /* Charcoal */
+    }
+    
+    /* Metric title */
+    .metricTitle {
+      font-size: 7pt !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.2pt !important;
+      text-align: center !important;
+      margin-top: 1mm !important;
+      margin-bottom: 1mm !important;
+      color: #4A4D52 !important;
+      height: auto !important;
+      min-height: 5mm !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    
+    /* Metric value display */
+    .metricValue {
+      font-size: 14pt !important;
+      font-weight: bold !important;
+      color: #1B365D !important;
+      text-align: center !important;
+      margin: 1mm 0 !important;
+    }
+    
+    /* Change indicator */
+    .metricChange {
+      font-size: 7pt !important;
+      text-align: center !important;
+      margin: 0.5mm 0 !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    
+    .positiveChange {
+      color: #2E6A4F !important; /* Deep Green */
+    }
+    
+    .negativeChange {
+      color: #B33A3A !important; /* Red */
+    }
+    
+    /* Progress bar */
+    .metricBar {
+      height: 2mm !important;
+      background-color: #F0F0F0 !important;
+      margin: 1.5mm 0 !important;
+      position: relative !important;
+      border-radius: 1mm !important;
+    }
+    
+    /* Before/after indicators with patterns for better print distinction */
+    .metricBarBefore {
+      height: 100% !important;
+      background-color: #D1D5DB !important;
+      border-radius: 1mm !important;
+    }
+    
+    .metricBarAfter {
+      height: 100% !important;
+      border-radius: 1mm !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+    }
+    
+    /* Different patterns for each metric type */
+    .maintenance .metricBarAfter { 
+      background: repeating-linear-gradient(
+        45deg,
+        #2E6A4F,
+        #2E6A4F 1mm,
+        #40846A 1mm,
+        #40846A 2mm
+      ) !important; /* Deep Green */
+    }
+    
+    .completion .metricBarAfter {
+      background: repeating-linear-gradient(
+        -45deg,
+        #C4A87C,
+        #C4A87C 1mm,
+        #D8BF97 1mm,
+        #D8BF97 2mm
+      ) !important; /* Gold */
+    }
+    
+    .safety .metricBarAfter {
+      background: repeating-linear-gradient(
+        90deg,
+        #1B365D,
+        #1B365D 1mm,
+        #2A4A74 1mm,
+        #2A4A74 2mm
+      ) !important; /* Navy Blue */
+    }
+    
+    .retention .metricBarAfter {
+      background: repeating-linear-gradient(
+        0deg,
+        #4A4D52,
+        #4A4D52 1mm,
+        #636669 1mm,
+        #636669 2mm
+      ) !important; /* Steel Gray */
+    }
+    
+    .cost .metricBarAfter {
+      background: repeating-linear-gradient(
+        135deg,
+        #2C2F33,
+        #2C2F33 1mm,
+        #42454A 1mm,
+        #42454A 2mm
+      ) !important; /* Charcoal */
+    }
+    
+    /* Specific width classes */
+    .metricBarBefore76 { width: 76% !important; }
+    .metricBarBefore78 { width: 78% !important; }
+    .metricBarBefore100 { width: 100% !important; }
+    .metricBarBefore72 { width: 72% !important; }
+    .metricBarAfter98_5 { width: 98.5% !important; }
+    .metricBarAfter94 { width: 94% !important; }
+    .metricBarAfter55 { width: 55% !important; }
+    .metricBarAfter100 { width: 100% !important; }
+    .metricBarAfter74 { width: 74% !important; }
+    
+    /* Comparison text */
+    .metricComparison {
+      display: flex !important;
+      justify-content: space-between !important;
+      font-size: 6pt !important;
+      color: #4A4D52 !important;
+      margin-top: 0.5mm !important;
+    }
+    
+    /* Metrics summary box */
+    .metricsSummary {
+      padding: 0 3mm 3mm 3mm !important;
+    }
+    
+    .summaryBox {
+      background-color: #F5F5F5 !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      padding: 2mm !important;
+    }
+    
+    /***********************************************************************
+     * 7. ACHIEVEMENTS & HIGHLIGHT CARDS
+     * Transform interactive cards into print-optimized content blocks
+     ***********************************************************************/
+    
+    /* Achievements grid in summary */
+    .summaryAchievements {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 3mm !important;
+      margin-top: 5mm !important;
+    }
+    
+    /* Individual achievement cards */
+    .achievement {
+      padding: 2mm !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-left: 1.5pt solid #1B365D !important;
+      border-radius: 1mm !important;
+      background-color: white !important;
+    }
+    
+    /* Achievement icon */
+    .achievementIcon {
+      width: 5mm !important;
+      height: 5mm !important;
+      margin-bottom: 1mm !important;
+      background-color: rgba(27, 54, 93, 0.1) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 50% !important;
+    }
+    
+    .achievementIcon .lucideIcon {
+      width: 3mm !important;
+      height: 3mm !important;
+      color: #1B365D !important;
+    }
+    
+    .achievementTitle {
+      font-size: 9pt !important;
+      font-weight: bold !important;
+      color: #1B365D !important;
+      margin-bottom: 1mm !important;
+    }
+    
+    .achievementText {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+    }
+    
+    /* Project highlights container */
+    .highlightsContainer {
+      margin-top: 5mm !important;
+      position: relative !important;
+      padding-top: 5mm !important;
+      border-top: 0.5pt dashed #D1D5DB !important;
+    }
+    
+    /* Subheading for highlights */
+    .highlightsContainer .subheading {
+      font-size: 11pt !important;
+      color: #1B365D !important;
+      margin-bottom: 3mm !important;
+      text-align: center !important;
+    }
+    
+    /* Project highlight cards */
+    .highlightCard {
+      padding: 2mm !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      background-color: white !important;
+      position: relative !important;
+    }
+    
+    /* Project-specific styling */
+    .highlightCardLehkwiya { border-top: 1.5pt solid #1B365D !important; } /* Navy Blue */
+    .highlightCardMOI { border-top: 1.5pt solid #2E6A4F !important; } /* Deep Green */
+    .highlightCardJabor { border-top: 1.5pt solid #C4A87C !important; } /* Gold */
+    .highlightCardLusail { border-top: 1.5pt solid #4A4D52 !important; } /* Steel Gray */
+    
+    /* Card titles with project-specific colors */
+    .highlightCardTitleLehkwiya,
+    .highlightCardTitleMOI,
+    .highlightCardTitleJabor,
+    .highlightCardTitleLusail {
+      font-size: 9pt !important;
+      font-weight: bold !important;
+      margin-bottom: 1mm !important;
+      padding-bottom: 1mm !important;
+      border-bottom: 0.5pt dotted #D1D5DB !important;
+    }
+    
+    .highlightCardTitleLehkwiya { color: #1B365D !important; } /* Navy Blue */
+    .highlightCardTitleMOI { color: #2E6A4F !important; } /* Deep Green */
+    .highlightCardTitleJabor { color: #C4A87C !important; } /* Gold */
+    .highlightCardTitleLusail { color: #4A4D52 !important; } /* Steel Gray */
+    
+    .highlightCardText {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+    }
+    
+    /***********************************************************************
+     * 8. SKILLS SECTION
+     * Transform interactive skills visualization into print format
+     ***********************************************************************/
+    
+    /* Skills container */
+    .skillsContainer {
+      gap: 5mm !important;
+    }
+    
+    /* Chart container */
+    .chartContainer {
+      height: 70mm !important;
+      margin-bottom: 3mm !important;
+    }
+    
+    /* SVG chart optimizations */
+    .chartContainer svg {
+      shape-rendering: geometricPrecision !important;
+      text-rendering: optimizeLegibility !important;
+    }
+    
+    .chartContainer text {
+      font-size: 7pt !important;
+      fill: #333333 !important;
+    }
+    
+    .chartContainer path {
+      stroke: #fff !important;
+      stroke-width: 0.5pt !important;
+    }
+    
+    /* Skills cards */
+    .skillCard {
+      margin-bottom: 2mm !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      overflow: hidden !important;
+    }
+    
+    .skillCardButton {
+      padding: 2mm !important;
+      background-color: #F5F5F5 !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    }
+    
+    .skillCardTitle {
+      font-size: 9pt !important;
+      font-weight: bold !important;
+      color: #1B365D !important;
+    }
+    
+    /* Always show skill details in print */
+    .skillCardContent {
+      display: block !important;
+      padding: 2mm !important;
+      background-color: white !important;
+      border-top: 0.5pt solid #D1D5DB !important;
+    }
+    
+    .skillCardList {
+      padding-left: 4mm !important;
+      margin: 0 !important;
+    }
+    
+    .skillCardList li {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      margin-bottom: 1mm !important;
+      position: relative !important;
+    }
+    
+    .skillCardList li::before {
+      content: "•" !important;
+      position: absolute !important;
+      left: -2.5mm !important;
+      color: #1B365D !important;
+    }
+    
+    /* Hide expand/collapse chevrons */
+    .expandIcon {
+      display: none !important;
+    }
+    
+    /***********************************************************************
+     * 9. EXPERIENCE SECTION
+     * Transform the interactive timeline into a professional CV layout
+     ***********************************************************************/
+    
+    /* Experience section container with page break */
+    #experience-section {
+      padding-top: 5mm !important;
+    }
+    
+    /* Hide expand all controls */
+    .expandAllContainer {
+      display: none !important;
+    }
+    
+    /* Timeline container with vertical line */
+    .timelineContainer {
+      position: relative !important;
+      padding-left: 5mm !important;
+    }
+    
+    .timelineContainer::before {
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      left: 1.5mm !important;
+      width: 0.5pt !important;
+      background-color: #1B365D !important;
+      opacity: 0.4 !important;
+    }
+    
+    /* Individual experience items */
+    .experienceItem {
+      margin-bottom: 5mm !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      overflow: hidden !important;
+      page-break-inside: avoid !important;
+    }
+    
+    /* Timeline header */
+    .timelineHeader {
+      padding: 2mm 2mm 2mm 5mm !important;
+      background-color: #F5F5F5 !important;
+      border-bottom: 0.5pt solid #D1D5DB !important;
+      position: relative !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+    
+    /* Timeline marker (circle on the timeline) */
+    .timelineMarker {
+      position: absolute !important;
+      width: 2.5mm !important;
+      height: 2.5mm !important;
+      background-color: #1B365D !important;
+      border-radius: 50% !important;
+      left: -4mm !important;
+      border: 0.5pt solid white !important;
+      z-index: 2 !important;
+    }
+    
+    /* Timeline content */
+    .timelineContent {
+      flex-grow: 1 !important;
+    }
+    
+    .timelineYear {
+      font-size: 7pt !important;
+      color: #1B365D !important;
+      font-weight: 500 !important;
+    }
+    
+    .timelineTitle {
+      font-size: 10pt !important;
+      font-weight: bold !important;
+      color: #1B365D !important;
+      margin: 0.5mm 0 !important;
+    }
+    
+    .timelineCompany {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+    }
+    
+    /* Always show experience details in print */
+    .experienceDetails {
+      display: block !important;
+      padding: 3mm !important;
+      background-color: white !important;
+      border-top: 0.5pt solid #D1D5DB !important;
+    }
+    
+    /* Experience card */
+    .experienceCard {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    
+    /* Card title & subtitle */
+    .cardTitle {
+      font-size: 10pt !important;
+      color: #1B365D !important;
+      font-weight: bold !important;
+      margin-bottom: 1mm !important;
+    }
+    
+    .cardSubtitle {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      font-style: italic !important;
+      margin-bottom: 3mm !important;
+      padding-left: 2mm !important;
+      position: relative !important;
+    }
+    
+    .cardSubtitle::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 0 !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      width: 1mm !important;
+      height: 2.5mm !important;
+      background-color: #C4A87C !important; /* Gold accent */
+    }
+    
+    /* Project highlights */
+    .cardProject {
+      font-size: 8pt !important;
+      color: #2E6A4F !important; /* Deep Green */
+      font-weight: 500 !important;
+      margin: 2mm 0 !important;
+      padding: 1.5mm 2mm !important;
+      background-color: rgba(46, 106, 79, 0.05) !important;
+      border-left: 1mm solid #2E6A4F !important;
+      border-radius: 0 1mm 1mm 0 !important;
+    }
+    
+    /* Projects container */
+    .projectsContainer {
+      margin: 2mm 0 3mm 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1.5mm !important;
+    }
+    
+    /* Project box */
+    .projectBox {
+      padding: 2mm !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      background-color: white !important;
+    }
+    
+    .projectName {
+      font-size: 8pt !important;
+      color: #333333 !important;
+      flex: 1 !important;
+    }
+    
+    .projectValue {
+      font-size: 7pt !important;
+      color: #1B365D !important;
+      background-color: rgba(27, 54, 93, 0.1) !important;
+      padding: 0.5mm 1mm !important;
+      border-radius: 0.75mm !important;
+      font-weight: 500 !important;
+      white-space: nowrap !important;
+    }
+    
+    /* Section headings */
+    .cardHeading {
+      font-size: 9pt !important;
+      font-weight: bold !important;
+      color: #1B365D !important;
+      margin: 4mm 0 2mm 0 !important;
+      padding-bottom: 1mm !important;
+      border-bottom: 0.5pt solid #D1D5DB !important;
+    }
+    
+    /* List styles */
+    .cardList {
+      margin: 2mm 0 !important;
+      padding-left: 4mm !important;
+    }
+    
+    .cardList li {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      margin-bottom: 1mm !important;
+      position: relative !important;
+      line-height: 1.4 !important;
+    }
+    
+    .cardList li::before {
+      content: "•" !important;
+      position: absolute !important;
+      left: -2.5mm !important;
+      color: #4A4D52 !important;
+    }
+    
+    /* Key achievements */
+    .keyAchievement {
+      position: relative !important;
+      padding: 1.5mm 2mm 1.5mm 5mm !important;
+      margin: 1.5mm 0 !important;
+      background-color: rgba(196, 168, 124, 0.05) !important; /* Very light gold */
+      border-radius: 1mm !important;
+      border-left: 1mm solid #C4A87C !important; /* Gold */
+    }
+    
+    .keyAchievement::before {
+      content: "★" !important;
+      position: absolute !important;
+      left: 1.5mm !important;
+      top: 1.5mm !important;
+      color: #C4A87C !important; /* Gold */
+      font-size: 7pt !important;
+    }
+    
+    /***********************************************************************
+     * 10. PROJECTS SECTION
+     * Transform the interactive project showcase into print layout
+     ***********************************************************************/
+    
+    /* Projects section container */
+    #projects-section {
+      padding-top: 5mm !important;
+    }
+    
+    /* Projects analysis container */
+    .projectsAnalysisContainer {
+      gap: 5mm !important;
+      margin-bottom: 5mm !important;
+    }
+    
+    /* Column styling */
+    .projectColumn {
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      padding: 3mm !important;
+      background-color: white !important;
+    }
+    
+    /* Column heading */
+    .projectColumn .subheading {
+      font-size: 10pt !important;
+      color: #1B365D !important;
+      margin-bottom: 3mm !important;
+      padding-bottom: 1mm !important;
+      border-bottom: 0.5pt solid #D1D5DB !important;
+      text-align: center !important;
+    }
+    
+    /* Metrics styling */
+    .projectMetricsContainer {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 3mm !important;
+    }
+    
+    /* Progress bar container */
+    .progressBarContainer {
+      margin-bottom: 3mm !important;
+    }
+    
+    /* Progress bar label */
+    .progressBarLabel {
+      display: flex !important;
+      justify-content: space-between !important;
+      margin-bottom: 1mm !important;
+    }
+    
+    /* Progress bar text */
+    .progressBarText {
+      font-size: 8pt !important;
+    }
+    
+    .progressBarText:last-child {
+      font-weight: bold !important;
+      color: #1B365D !important;
+    }
+    
+    /* Progress bar background */
+    .progressBarBg {
+      height: 2mm !important;
+      background-color: #EEEEEE !important;
+      border-radius: 1mm !important;
+      position: relative !important;
+    }
+    
+    /* Progress bar */
+    .progressBar {
+      height: 2mm !important;
+      border-radius: 1mm !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+    }
+    
+    /* Progress bar styling by type */
+    .completionRate {
+      background: repeating-linear-gradient(
+        45deg,
+        #1B365D,
+        #1B365D 1mm,
+        #2A4A74 1mm,
+        #2A4A74 2mm
+      ) !important;
+      width: 94% !important;
+    }
+    
+    .budgetAdherence {
+      background: repeating-linear-gradient(
+        -45deg,
+        #2E6A4F,
+        #2E6A4F 1mm,
+        #40846A 1mm,
+        #40846A 2mm
+      ) !important;
+      width: 97% !important;
+    }
+    
+    .clientSatisfaction {
+      background: repeating-linear-gradient(
+        90deg,
+        #C4A87C,
+        #C4A87C 1mm,
+        #D8BF97 1mm,
+        #D8BF97 2mm
+      ) !important;
+      width: 92% !important;
+    }
+    
+    .teamEfficiency {
+      background: repeating-linear-gradient(
+        0deg,
+        #1B365D,
+        #1B365D 1mm,
+        #4A4D52 1mm,
+        #4A4D52 2mm
+      ) !important;
+      width: 89% !important;
+    }
+    
+    .resourceOptimization {
+      background: repeating-linear-gradient(
+        135deg,
+        #2E6A4F,
+        #2E6A4F 1mm,
+        #C4A87C 1mm,
+        #C4A87C 2mm
+      ) !important;
+      width: 91% !important;
+    }
+    
+    /***********************************************************************
+     * 11. EDUCATION SECTION
+     * Transform the education cards into print format
+     ***********************************************************************/
+    
+    /* Education section container */
+    #education-section {
+      padding-top: 5mm !important;
+    }
+    
+    /* Education grid */
+    .educationGrid {
+      gap: 3mm !important;
+    }
+    
+    /* Education card */
+    .educationCard {
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      padding: 3mm !important;
+      background-color: white !important;
+    }
+    
+    /* Education header */
+    .educationHeader {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+      margin-bottom: 2mm !important;
+    }
+    
+    /* Education title */
+    .educationTitle {
+      font-size: 10pt !important;
+      font-weight: bold !important;
+      color: #1B365D !important;
+      margin-bottom: 1mm !important;
+    }
+    
+    /* Education field */
+    .educationField {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      margin-bottom: 0.5mm !important;
+    }
+    
+    /* Education institution */
+    .educationInstitution {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      font-style: italic !important;
+    }
+    
+    /* Education year */
+    .educationYear {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      font-weight: 500 !important;
+    }
+    
+    /* Education additional */
+    .educationAdditional {
+      margin-top: 2mm !important;
+      padding-top: 2mm !important;
+      border-top: 0.5pt dotted #D1D5DB !important;
+    }
+    
+    .educationAdditionalText {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      font-style: italic !important;
+    }
+    
+    /***********************************************************************
+     * 12. HELPER CLASSES & UTILITY STYLES
+     * Additional styles for print optimization
+     ***********************************************************************/
+    
+    /* Icons in print */
+    .lucideIcon {
+      color: #1B365D !important;
+      stroke-width: 2 !important;
+    }
+    
+    /* Class to manually force page breaks */
+    .pageBreakBefore {
+      page-break-before: always !important;
+      break-before: page !important;
+    }
+    
+    .pageBreakAfter {
+      page-break-after: always !important;
+      break-after: page !important;
+    }
+    
+    .avoidPageBreak {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    
+    /* Force specific sections to start on new pages */
+    .timelineItem:nth-of-type(4) {
+      page-break-before: always !important;
+      break-before: page !important;
+    }
+    
+    /* Hide elements that shouldn't print */
+    .printHidden, .noPrint {
+      display: none !important;
+    }
+    
+    /* Make charts and tables display better in print */
+    svg {
+      shape-rendering: crispEdges !important;
+    }
+    
+    table {
+      border-collapse: collapse !important;
+    }
+    
+    /* Special page footers */
+    #projects-section::after {
+      content: "Projects Portfolio • Yahya Chaker" !important;
+      position: absolute !important;
+      bottom: 5mm !important;
+      right: 5mm !important;
+      font-size: 6pt !important;
+      font-style: italic !important;
+      color: #D1D5DB !important;
+      opacity: 0.7 !important;
+    }
+    
+    #experience-section::after {
+      content: "Professional Experience • Yahya Chaker" !important;
+      position: absolute !important;
+      bottom: 5mm !important;
+      right: 5mm !important;
+      font-size: 6pt !important;
+      font-style: italic !important;
+      color: #D1D5DB !important;
+      opacity: 0.7 !important;
+    }
+  }

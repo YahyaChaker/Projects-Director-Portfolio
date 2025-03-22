@@ -1,0 +1,22 @@
+/* ...existing code... */
+
+/* Print preparation state */
+body.preparing-print {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Hide elements during print that shouldn't be printed */
+.noPrint {
+  display: none !important;
+}
+
+/* Ensure that PrintStyles.css takes precedence */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm;
+  }
+}
+
+/* ...existing code... */

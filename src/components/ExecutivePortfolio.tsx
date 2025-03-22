@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import * as LucideIcons from 'lucide-react';
 import styles from '../styles/ExecutivePortfolio.module.css';
+import PrintStyles from '../styles/PrintStyles.css'; // Add this import for print styles
 import PrintComponent from './print-component'; // Import PrintComponent for print functionality
 
 // Type assertion for Lucide icons
@@ -167,6 +168,7 @@ const ExecutivePortfolio: React.FC = () => {
               <User className={styles.lucideIcon} size={16} />
               <span>Summary</span>
             </button>
+
             <button 
               onClick={() => setActiveSection('skills')}
               className={`${styles.navButton} ${activeSection === 'skills' ? styles.navButtonActive : ''}`}
@@ -174,13 +176,7 @@ const ExecutivePortfolio: React.FC = () => {
               <Target className={styles.lucideIcon} size={16} />
               <span>Skills & Strengths</span>
             </button>
-            <button 
-              onClick={() => setActiveSection('experience')}
-              className={`${styles.navButton} ${activeSection === 'experience' ? styles.navButtonActive : ''}`}
-            >
-              <Briefcase className={styles.lucideIcon} size={16} />
-              <span>Experience</span>
-            </button>
+
             <button 
               onClick={() => setActiveSection('projects')}
               className={`${styles.navButton} ${activeSection === 'projects' ? styles.navButtonActive : ''}`}
@@ -188,6 +184,15 @@ const ExecutivePortfolio: React.FC = () => {
               <BarChart2 className={styles.lucideIcon} size={16} />
               <span>Projects</span>
             </button>
+
+            <button 
+              onClick={() => setActiveSection('experience')}
+              className={`${styles.navButton} ${activeSection === 'experience' ? styles.navButtonActive : ''}`}
+            >
+              <Briefcase className={styles.lucideIcon} size={16} />
+              <span>Experience</span>
+            </button>
+
             <button 
               onClick={() => setActiveSection('education')}
               className={`${styles.navButton} ${activeSection === 'education' ? styles.navButtonActive : ''}`}
@@ -195,6 +200,7 @@ const ExecutivePortfolio: React.FC = () => {
               <BookOpen className={styles.lucideIcon} size={16} />
               <span>Education</span>
             </button>
+
           </div>
         </div>
       </nav>
@@ -556,6 +562,121 @@ const ExecutivePortfolio: React.FC = () => {
               </div>
             </div>
           </section>
+
+          {/* Projects Analysis */}
+          <section 
+            id="projects-section" 
+            className={`${styles.section} ${PrintStyles.section} ${activeSection === 'projects' ? styles.visible : styles.hidden}`}
+          >
+            <h2 className={`${styles.sectionTitleWithMargin} ${PrintStyles.sectionTitle}`}>Projects Portfolio Analysis</h2>
+            
+            <div className={`${styles.projectsAnalysisContainer} ${PrintStyles.projectsAnalysisContainer}`}>
+              <div className={`${styles.projectColumn} ${PrintStyles.projectColumn}`}>
+                <h3 className={`${styles.subheading} ${PrintStyles.subheading}`}>Current Projects Value Distribution (Millions QAR)</h3>
+                <div className={`${styles.chartContainer} ${PrintStyles.chartContainer}`}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={projectValueData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={true}
+                        label={(props: any) => `${props.name} ${props.value}`}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {projectValueData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip formatter={(value) => String(value)} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+              
+              <div className={`${styles.projectColumn} ${PrintStyles.projectColumn}`}>
+                <h3 className={`${styles.subheading} ${PrintStyles.subheading}`}>Project Management Metrics</h3>
+                <div className={`${styles.projectMetricsContainer} ${PrintStyles.projectMetricsContainer}`}>
+                  <div className={`${styles.progressBarContainer} ${PrintStyles.progressBarContainer}`}>
+                    <div className={`${styles.progressBarLabel} ${PrintStyles.progressBarLabel}`}>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarText}`}>Current Projects Completion Rate</span>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarValue}`}>94%</span>
+                    </div>
+                    <div className={`${styles.progressBarBg} ${PrintStyles.progressBarBg}`}>
+                      <div className={`${styles.progressBar} ${styles.completionRate} ${PrintStyles.progressBar}`}></div>
+                    </div>
+                  </div>
+                  
+                  <div className={`${styles.progressBarContainer} ${PrintStyles.progressBarContainer}`}>
+                    <div className={`${styles.progressBarLabel} ${PrintStyles.progressBarLabel}`}>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarText}`}>Budget Adherence</span>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarValue}`}>97%</span>
+                    </div>
+                    <div className={`${styles.progressBarBg} ${PrintStyles.progressBarBg}`}>
+                      <div className={`${styles.progressBar} ${styles.budgetAdherence} ${PrintStyles.progressBar}`}></div>
+                    </div>
+                  </div>
+                  
+                  <div className={`${styles.progressBarContainer} ${PrintStyles.progressBarContainer}`}>
+                    <div className={`${styles.progressBarLabel} ${PrintStyles.progressBarLabel}`}>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarText}`}>Client Satisfaction</span>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarValue}`}>92%</span>
+                    </div>
+                    <div className={`${styles.progressBarBg} ${PrintStyles.progressBarBg}`}>
+                      <div className={`${styles.progressBar} ${styles.clientSatisfaction} ${PrintStyles.progressBar}`}></div>
+                    </div>
+                  </div>
+                  
+                  <div className={`${styles.progressBarContainer} ${PrintStyles.progressBarContainer}`}>
+                    <div className={`${styles.progressBarLabel} ${PrintStyles.progressBarLabel}`}>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarText}`}>Team Efficiency</span>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarValue}`}>89%</span>
+                    </div>
+                    <div className={`${styles.progressBarBg} ${PrintStyles.progressBarBg}`}>
+                      <div className={`${styles.progressBar} ${styles.teamEfficiency} ${PrintStyles.progressBar}`}></div>
+                    </div>
+                  </div>
+                  
+                  <div className={`${styles.progressBarContainer} ${PrintStyles.progressBarContainer}`}>
+                    <div className={`${styles.progressBarLabel} ${PrintStyles.progressBarLabel}`}>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarText}`}>Resource Optimization</span>
+                      <span className={`${styles.progressBarText} ${PrintStyles.progressBarValue}`}>91%</span>
+                    </div>
+                    <div className={`${styles.progressBarBg} ${PrintStyles.progressBarBg}`}>
+                      <div className={`${styles.progressBar} ${styles.resourceOptimization} ${PrintStyles.progressBar}`}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className={`${styles.highlightsContainer} ${PrintStyles.highlightsContainer}`}>
+              <h3 className={`${styles.subheading} ${PrintStyles.subheading}`}>Key Project Highlights</h3>
+              <div className={`${styles.highlightCards} ${PrintStyles.highlightCards}`}>
+                <div className={`${styles.highlightCard} ${styles.highlightCardLehkwiya} ${PrintStyles.highlightCard}`}>
+                  <h4 className={`${styles.highlightCardTitleLehkwiya} ${PrintStyles.highlightCardTitle}`}>Lekhwiya Head Quarter</h4>
+                  <p className={`${styles.highlightCardText} ${PrintStyles.highlightCardText}`}>Transformed MEP progress from 10% to 100% within a 6-month contract period, managing a team of 720 personnel.</p>
+                </div>
+                
+                <div className={`${styles.highlightCard} ${styles.highlightCardMOI} ${PrintStyles.highlightCard}`}>
+                  <h4 className={`${styles.highlightCardTitleMOI} ${PrintStyles.highlightCardTitle}`}>Ministry of Interior</h4>
+                  <p className={`${styles.highlightCardText} ${PrintStyles.highlightCardText}`}>Maintained #1 ranking for 3 years with no penalties, increased maintenance compliance from 76% to 98.5%.</p>
+                </div>
+                
+                <div className={`${styles.highlightCard} ${styles.highlightCardJabor} ${PrintStyles.highlightCard}`}>
+                  <h4 className={`${styles.highlightCardTitleJabor} ${PrintStyles.highlightCardTitle}`}>Al Jabor Realty</h4>
+                  <p className={`${styles.highlightCardText} ${PrintStyles.highlightCardText}`}>Generated over 1M QAR in annual cost savings through strategic contract restructuring and process optimization.</p>
+                </div>
+                
+                <div className={`${styles.highlightCard} ${styles.highlightCardLusail} ${PrintStyles.highlightCard}`}>
+                  <h4 className={`${styles.highlightCardTitleLusail} ${PrintStyles.highlightCardTitle}`}>Lusail Boulevard</h4>
+                  <p className={`${styles.highlightCardText} ${PrintStyles.highlightCardText}`}>Improved reporting accuracy to 90%, eliminating disputed KPI deductions and strengthening client trust.</p>
+                </div>
+              </div>
+            </div>
+          </section>
           
           {/* Professional Experience */}
           <section 
@@ -816,122 +937,7 @@ const ExecutivePortfolio: React.FC = () => {
                 </div>
               ))}
             </div>
-          </section>
-          
-          {/* Projects Analysis */}
-          <section 
-            id="projects-section" 
-            className={`${styles.section} ${activeSection === 'projects' ? styles.visible : styles.hidden}`}
-          >
-            <h2 className={styles.sectionTitleWithMargin}>Projects Portfolio Analysis</h2>
-            
-            <div className={styles.projectsAnalysisContainer}>
-              <div className={styles.projectColumn}>
-                <h3 className={styles.subheading}>Current Projects Value Distribution (Millions QAR)</h3>
-                <div className={styles.chartContainer}>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={projectValueData}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={true}
-                        label={(props: any) => `${props.name} ${props.value}`}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
-                      >
-                        {projectValueData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip formatter={(value) => String(value)} />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-              
-              <div className={styles.projectColumn}>
-                <h3 className={styles.subheading}>Project Management Metrics</h3>
-                <div className={styles.projectMetricsContainer}>
-                  <div className={styles.progressBarContainer}>
-                    <div className={styles.progressBarLabel}>
-                      <span className={styles.progressBarText}>Current Projects Completion Rate</span>
-                      <span className={styles.progressBarText}>94%</span>
-                    </div>
-                    <div className={styles.progressBarBg}>
-                      <div className={`${styles.progressBar} ${styles.completionRate}`}></div>
-                    </div>
-                  </div>
-                  
-                  <div className={styles.progressBarContainer}>
-                    <div className={styles.progressBarLabel}>
-                      <span className={styles.progressBarText}>Budget Adherence</span>
-                      <span className={styles.progressBarText}>97%</span>
-                    </div>
-                    <div className={styles.progressBarBg}>
-                      <div className={`${styles.progressBar} ${styles.budgetAdherence}`}></div>
-                    </div>
-                  </div>
-                  
-                  <div className={styles.progressBarContainer}>
-                    <div className={styles.progressBarLabel}>
-                      <span className={styles.progressBarText}>Client Satisfaction</span>
-                      <span className={styles.progressBarText}>92%</span>
-                    </div>
-                    <div className={styles.progressBarBg}>
-                      <div className={`${styles.progressBar} ${styles.clientSatisfaction}`}></div>
-                    </div>
-                  </div>
-                  
-                  <div className={styles.progressBarContainer}>
-                    <div className={styles.progressBarLabel}>
-                      <span className={styles.progressBarText}>Team Efficiency</span>
-                      <span className={styles.progressBarText}>89%</span>
-                    </div>
-                    <div className={styles.progressBarBg}>
-                      <div className={`${styles.progressBar} ${styles.teamEfficiency}`}></div>
-                    </div>
-                  </div>
-                  
-                  <div className={styles.progressBarContainer}>
-                    <div className={styles.progressBarLabel}>
-                      <span className={styles.progressBarText}>Resource Optimization</span>
-                      <span className={styles.progressBarText}>91%</span>
-                    </div>
-                    <div className={styles.progressBarBg}>
-                      <div className={`${styles.progressBar} ${styles.resourceOptimization}`}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className={styles.highlightsContainer}>
-              <h3 className={styles.subheading}>Key Project Highlights</h3>
-              <div className={styles.highlightCards}>
-                <div className={`${styles.highlightCard} ${styles.highlightCardLehkwiya}`}>
-                  <h4 className={styles.highlightCardTitleLehkwiya}>Lekhwiya Head Quarter</h4>
-                  <p className={styles.highlightCardText}>Transformed MEP progress from 10% to 100% within a 6-month contract period, managing a team of 720 personnel.</p>
-                </div>
-                
-                <div className={`${styles.highlightCard} ${styles.highlightCardMOI}`}>
-                  <h4 className={styles.highlightCardTitleMOI}>Ministry of Interior</h4>
-                  <p className={styles.highlightCardText}>Maintained #1 ranking for 3 years with no penalties, increased maintenance compliance from 76% to 98.5%.</p>
-                </div>
-                
-                <div className={`${styles.highlightCard} ${styles.highlightCardJabor}`}>
-                  <h4 className={styles.highlightCardTitleJabor}>Al Jabor Realty</h4>
-                  <p className={styles.highlightCardText}>Generated over 1M QAR in annual cost savings through strategic contract restructuring and process optimization.</p>
-                </div>
-                
-                <div className={`${styles.highlightCard} ${styles.highlightCardLusail}`}>
-                  <h4 className={styles.highlightCardTitleLusail}>Lusail Boulevard</h4>
-                  <p className={styles.highlightCardText}>Improved reporting accuracy to 90%, eliminating disputed KPI deductions and strengthening client trust.</p>
-                </div>
-              </div>
-            </div>
-          </section>
+          </section>     
           
           {/* Education & Certifications */}
           <section 

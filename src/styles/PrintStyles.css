@@ -1,0 +1,347 @@
+/**
+ * PrintStyles.css - First Page Optimization for A4
+ * Dedicated to making the header and summary section fit perfectly on one A4 page
+ */
+
+ @media print {
+    /* Global Reset & A4 Page Setup */
+    * {
+      margin: 0 !important; 
+      padding: 0 !important;
+      transition: none !important; 
+      animation: none !important;
+      box-shadow: none !important; 
+      text-shadow: none !important;
+      -webkit-print-color-adjust: exact !important; 
+      print-color-adjust: exact !important;
+    }
+    
+    /* Use !important to ensure these styles take precedence */
+    @page {
+      size: A4 portrait !important; /* 210mm × 297mm */
+      margin: 10mm 12mm !important; /* Adequate margins for professional appearance */
+    }
+    
+    html, body {
+      width: 210mm !important; 
+      height: 297mm !important;
+      font-size: 9pt !important;
+      background-color: white !important;
+      line-height: 1.2 !important;
+    }
+    
+    /* Hide elements with noPrint class */
+    .noPrint {
+      display: none !important;
+    }
+    
+    /* Hide navigation and non-essential elements */
+    .nav, .footer, .summaryHeroPattern, 
+    .printButton, .printComponent {
+      display: none !important;
+    }
+    
+    /* HEADER - Keep exactly as displayed */
+    .header {
+      background: none !important;
+      color: #1B365D !important;
+      padding: 0 0 4mm 0 !important;
+      margin: 0 !important;
+      border-bottom: 0.75pt solid #D1D5DB !important;
+      position: relative !important;
+    }
+    
+    .headerContent {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+      gap: 4mm !important;
+    }
+    
+    .headerImageTitle {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 4mm !important;
+    }
+    
+    /* Profile image exactly as displayed */
+    .profileImage {
+      width: 25mm !important;
+      height: 25mm !important;
+      border-radius: 50% !important;
+      border: 0.75pt solid #D1D5DB !important;
+    }
+    
+    /* Name and title */
+    .title {
+      font-size: 16pt !important;
+      color: #1B365D !important;
+      font-weight: bold !important;
+      margin: 0 !important;
+    }
+    
+    .subtitle {
+      font-size: 12pt !important;
+      color: #4A4D52 !important;
+      margin: 1mm 0 0 0 !important;
+    }
+    
+    /* Contact information */
+    .contactInfo {
+      font-size: 8pt !important;
+      gap: 1.5mm !important;
+      max-width: 65mm !important;
+      line-height: 1.5 !important;
+    }
+    
+    .contactItem {
+      display: flex !important;
+      align-items: center !important;
+      gap: 2mm !important;
+    }
+    
+    .contactItem .lucideIcon {
+      width: 3mm !important;
+      height: 3mm !important;
+      color: #1B365D !important;
+    }
+    
+    /* SUMMARY SECTION - Keep exactly as displayed but optimize spacing */
+    .summarySection {
+      border: none !important;
+      padding: 0 !important;
+      margin-top: 5mm !important;
+      background: none !important;
+    }
+    
+    .summaryHero {
+      background: none !important;
+      padding: 0 !important;
+      position: relative !important;
+      margin-bottom: 5mm !important;
+      border-bottom: 0.5pt dashed #D1D5DB !important;
+      padding-bottom: 4mm !important;
+    }
+    
+    .summaryHeroContent {
+      padding: 0 !important;
+    }
+    
+    .summaryHeadline {
+      font-size: 9pt !important;
+      color: #1B365D !important;
+      letter-spacing: 0.5pt !important;
+      text-transform: uppercase !important;
+      font-weight: 600 !important;
+    }
+    
+    .summaryTitle {
+      font-size: 16pt !important;
+      color: #1B365D !important;
+      margin: 1mm 0 2mm 0 !important;
+      line-height: 1.2 !important;
+      font-weight: bold !important;
+    }
+    
+    .summaryTagline {
+      font-size: 10pt !important;
+      font-style: italic !important;
+      color: #4A4D52 !important;
+      margin-bottom: 3mm !important;
+      border-left: 1pt solid #C4A87C !important;
+      padding-left: 2mm !important;
+      line-height: 1.4 !important;
+    }
+    
+    /* Key Statistics - optimize layout but maintain visual hierarchy */
+    .summaryHighlights {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 3mm !important;
+      margin-top: 3mm !important;
+      padding-top: 3mm !important;
+    }
+    
+    .summaryHighlight {
+      min-height: 16mm !important;
+      background: none !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      padding: 2mm !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    
+    .highlightNumber {
+      font-size: 16pt !important;
+      color: #1B365D !important;
+      margin-bottom: 1mm !important;
+      font-weight: bold !important;
+    }
+    
+    .highlightLabel {
+      font-size: 7pt !important;
+      color: #4A4D52 !important;
+      text-transform: uppercase !important;
+      text-align: center !important;
+    }
+    
+    /* Main content of summary */
+    .summaryContent {
+      padding: 0 !important;
+    }
+    
+    .summaryText {
+      font-size: 9pt !important;
+      color: #4A4D52 !important;
+      margin-bottom: 3mm !important;
+      text-align: justify !important;
+      line-height: 1.4 !important;
+    }
+    
+    .summaryText strong {
+      color: #1B365D !important;
+      font-weight: bold !important;
+    }
+    
+    /* Metrics section - compact for print */
+    .metricsSection {
+      padding: 0 !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 2mm !important;
+      overflow: hidden !important;
+      margin: 4mm 0 !important;
+      background-color: #FAFAFA !important;
+    }
+    
+    .metricsSectionHeader {
+      padding: 2mm !important;
+      border-bottom: 0.5pt solid #D1D5DB !important;
+      background-color: #F5F5F5 !important;
+    }
+    
+    .metricsHeading {
+      font-size: 10pt !important;
+      color: #1B365D !important;
+      margin-bottom: 1mm !important;
+      font-weight: bold !important;
+    }
+    
+    .metricsSubheading {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      font-style: italic !important;
+    }
+    
+    /* Metrics grid - adjust to fit page */
+    .metricsGrid {
+      display: grid !important;
+      grid-template-columns: repeat(5, 1fr) !important;
+      gap: 2mm !important;
+      padding: 2mm !important;
+    }
+    
+    /* Metric cards */
+    .metricCard {
+      padding: 2mm !important;
+      background-color: white !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-radius: 1mm !important;
+      min-height: 20mm !important;
+      position: relative !important;
+    }
+    
+    .metricTitle {
+      font-size: 7pt !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.2pt !important;
+      text-align: center !important;
+      margin: 1mm 0 !important;
+      color: #4A4D52 !important;
+      height: auto !important;
+      min-height: 4mm !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    
+    .metricValue {
+      font-size: 14pt !important;
+      font-weight: bold !important;
+      color: #1B365D !important;
+      text-align: center !important;
+      margin: 1mm 0 !important;
+    }
+    
+    .metricChange {
+      font-size: 7pt !important;
+      text-align: center !important;
+      margin: 0.5mm 0 !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    
+    /* Progress bars */
+    .metricBar {
+      height: 2mm !important;
+      background-color: #F0F0F0 !important;
+      margin: 1.5mm 0 !important;
+      position: relative !important;
+      border-radius: 1mm !important;
+    }
+    
+    /* Achievement cards */
+    .summaryAchievements {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 3mm !important;
+      margin-top: 4mm !important;
+    }
+    
+    .achievement {
+      padding: 2mm !important;
+      border: 0.5pt solid #D1D5DB !important;
+      border-left: 1.5pt solid #1B365D !important;
+      border-radius: 1mm !important;
+      background-color: white !important;
+    }
+    
+    .achievementIcon {
+      width: 5mm !important;
+      height: 5mm !important;
+      margin-bottom: 1mm !important;
+      background-color: rgba(27, 54, 93, 0.1) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 50% !important;
+    }
+    
+    .achievementTitle {
+      font-size: 9pt !important;
+      font-weight: bold !important;
+      color: #1B365D !important;
+      margin-bottom: 1mm !important;
+    }
+    
+    .achievementText {
+      font-size: 8pt !important;
+      color: #4A4D52 !important;
+      line-height: 1.3 !important;
+    }
+    
+    /* Ensure page break after summary section */
+    .summarySection {
+      page-break-after: always !important;
+      break-after: page !important;
+    }
+    
+    /* Hide navigation */
+    .nav {
+      display: none !important;
+    }
+  }
