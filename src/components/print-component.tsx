@@ -16,6 +16,7 @@ const PrintComponent: React.FC<PrintSectionProps> = ({ sections }) => {
   const [includeHeader, setIncludeHeader] = useState(true);
   const [includeFooter, setIncludeFooter] = useState(true);
   const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
+  const [isPreparing, setIsPreparing] = useState(false);
 
   // Toggle modal
   const toggleModal = () => {
@@ -44,8 +45,42 @@ const PrintComponent: React.FC<PrintSectionProps> = ({ sections }) => {
     }
   };
 
+  // Force Recharts to render properly
+  const forceChartsRender = () => {
+    // Find all chart containers
+    const chartContainers = document.querySelectorAll('.recharts-wrapper');
+    
+    // Add a class to mark charts as being prepared for print
+    document.body.classList.add('preparing-print');
+    
+    // Force a resize event which will make Recharts redraw
+    window.dispatchEvent(new Event('resize'));
+    
+    // If pie chart is in selected sections, ensure it's fully visible
+    if (selectedSections.includes('projects-section')) {
+      // Make sure chart containers are visible
+      chartContainers.forEach(container => {
+        if (container instanceof HTMLElement) {
+          container.style.opacity = '1';
+          container.style.visibility = 'visible';
+          container.style.display = 'block';
+        }
+      });
+    }
+    
+    // Return a promise that resolves after charts have had time to render
+    return new Promise<void>(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 5000); // Wait 2 seconds for charts to render
+    });
+  };
+
   // Handle print action
-  const handlePrint = () => {
+  const handlePrint = async () => {
+    // Show preparing indicator if desired
+    setIsPreparing(true);
+    
     // First, we need to show all sections that are selected for printing
     sections.forEach(section => {
       const sectionElement = document.getElementById(section.id);
@@ -89,12 +124,18 @@ const PrintComponent: React.FC<PrintSectionProps> = ({ sections }) => {
     // Close modal
     setIsModalOpen(false);
     
-    // Trigger print after a short delay
-    setTimeout(() => {
+    try {
+      // Wait for charts to render properly
+      await forceChartsRender();
+      
+      // Trigger print after ensuring charts are rendered
       window.print();
       
       // Reset after printing
       setTimeout(() => {
+        // Hide preparing indicator
+        setIsPreparing(false);
+        
         // Reset section visibility
         sections.forEach(section => {
           const sectionElement = document.getElementById(section.id);
@@ -112,9 +153,16 @@ const PrintComponent: React.FC<PrintSectionProps> = ({ sections }) => {
         // Remove orientation style
         const orientationStyle = document.getElementById('print-orientation');
         if (orientationStyle) orientationStyle.remove();
+        
+        // Remove preparing class
+        document.body.classList.remove('preparing-print');
 
       }, 500);
-    }, 300);
+    } catch (error) {
+      console.error('Error preparing print view:', error);
+      setIsPreparing(false);
+      document.body.classList.remove('preparing-print');
+    }
   };
 
   return (
@@ -268,12 +316,27 @@ const PrintComponent: React.FC<PrintSectionProps> = ({ sections }) => {
               <button 
                 className={styles.printConfirmButton}
                 onClick={handlePrint}
-                disabled={selectedSections.length === 0}
+                disabled={selectedSections.length === 0 || isPreparing}
               >
-                <Printer size={16} className={styles.buttonIcon} />
-                Print
+                {isPreparing ? (
+                  <span>Preparing...</span>
+                ) : (
+                  <>
+                    <Printer size={16} className={styles.buttonIcon} />
+                    Print
+                  </>
+                )}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Visual indicator when preparing print (optional) */}
+      {isPreparing && (
+        <div className={styles.preparingOverlay}>
+          <div className={styles.preparingContent}>
+            Preparing print view...
           </div>
         </div>
       )}

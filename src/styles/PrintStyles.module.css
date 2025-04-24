@@ -1,0 +1,1223 @@
+/**
+ * PrintStyles.module.css - Enhanced Print Styles for Executive Portfolio
+ * Optimized to match ExecutivePortfolio.module.css layout while ensuring excellent print quality
+ */
+
+ @media print {
+  /*********************************************
+   * GLOBAL PRINT SETTINGS & DOCUMENT SETUP
+   *********************************************/
+  
+  /* Basic reset for print */
+  * {
+    margin: 0;
+    padding: 0;
+    transition: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* A4 paper configuration */
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+  
+  /* First page setup */
+  @page :first {
+    margin-top: 7mm;
+  }
+  
+  /* Page numbers */
+  @page {
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: Arial, sans-serif;
+      font-size: 7pt;
+      color: #888;
+    }
+  }
+  
+  /* Document body setup */
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    font-size: 10pt;
+    line-height: 1.4;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: white;
+  }
+  
+  /* Portfolio container */
+  .portfolioContainer {
+    background: white;
+    width: 100%;
+  }
+  
+  /* Hide non-print elements */
+  .nav, 
+  .printButton, 
+  .expandAllContainer, 
+  .printComponent, 
+  .summaryHeroPattern,
+  .expandIcon {
+    display: none !important;
+  }
+  
+  /* Ensure all sections are visible for print */
+  section[id],
+  .section,
+  .summarySection,
+  [id^="summary-section"],
+  [id^="skills-section"],
+  [id^="experience-section"],
+  [id^="projects-section"],
+  [id^="education-section"] {
+    display: block !important;
+    background: white !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 0 5mm 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Ensure header and summary fit on first page */
+  #summary-section {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  /*********************************************
+   * TYPOGRAPHY & TEXT FORMATTING
+   *********************************************/
+  
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+    color: #1B365D;
+    font-weight: bold;
+    margin-bottom: 3mm;
+  }
+  
+  /* Main title (Name) */
+  .title {
+    font-size: 18pt;
+    color: #1B365D;
+    margin: 0;
+  }
+  
+  /* Subtitle (Position) */
+  .subtitle {
+    font-size: 12pt;
+    color: #4A4D52;
+    margin-top: 1mm;
+  }
+  
+  /* Section titles */
+  .sectionTitle, .sectionTitleWithMargin {
+    font-size: 14pt;
+    color: #1B365D;
+    padding-bottom: 2mm;
+    margin-bottom: 4mm;
+    border-bottom: 0.5pt solid #1B365D;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  
+  /* Subheadings */
+  .subheading {
+    font-size: 12pt;
+    color: #1B365D;
+    margin: 4mm 0 2mm 0;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  
+  /* Paragraph text */
+  p, .summaryText {
+    font-size: 10pt;
+    line-height: 1.4;
+    margin-bottom: 2mm;
+    color: #333;
+    text-align: justify;
+  }
+  
+  /* Strong emphasis */
+  strong {
+    color: #1B365D;
+    font-weight: bold;
+  }
+  
+  /* Lists */
+  ul, ol {
+    margin-left: 4mm;
+    margin-bottom: 3mm;
+  }
+  
+  li {
+    font-size: 9pt;
+    line-height: 1.4;
+    margin-bottom: 1mm;
+    color: #333;
+  }
+  
+  /* Icons */
+  .lucideIcon {
+    color: #1B365D !important;
+    stroke-width: 1.5;
+  }
+  
+  /* Links */
+  a, a:visited {
+    color: #1B365D;
+    text-decoration: none;
+  }
+  
+  /*********************************************
+   * HEADER & CONTACT INFORMATION
+   *********************************************/
+  
+  /* Main header */
+  .header {
+    background: none !important;
+    color: black;
+    padding: 0 !important;
+    margin-bottom: 3mm !important;
+    border-bottom: 0.5pt solid #DDD;
+  }
+  
+  /* Header content layout */
+  .headerContent, .headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Profile image and title container */
+  .headerTextContent {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .headerImageTitle {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  
+  /* Profile image */
+  .profileImage {
+    width: 20mm;
+    height: 20mm;
+    border-radius: 50%;
+    border: 0.5pt solid #DDD;
+  }
+  
+  /* Contact information */
+  .contactInfo {
+    font-size: 7pt;
+    color: #4A4D52;
+    line-height: 1.3;
+    text-align: right;
+  }
+  
+  .contactItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1mm;
+    margin-bottom: 0.5mm;
+  }
+  
+  /*********************************************
+   * SUMMARY SECTION
+   *********************************************/
+
+  .summarySection {
+    padding: 0 !important;
+    margin-bottom: 2mm !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Hero section transformation */
+  .summaryHero {
+    background: none !important;
+    color: #333;
+    padding: 0.5mm !important;
+    margin-bottom: 2mm !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .summaryHeroContent {
+    padding: 0 !important;
+  }
+  
+  /* Summary headline */
+  .summaryHeadline {
+    font-size: 10pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #1B365D;
+    margin-bottom: 1mm;
+  }
+  
+  /* Summary title */
+  .summaryTitle {
+    font-family: Arial, sans-serif;
+    font-size: 16pt;
+    color: #1B365D;
+    font-weight: 700;
+    margin: 1mm 0 4mm 0;
+    line-height: 1.2;
+    text-align: left;
+  }
+  
+  /* Summary tagline */
+  .summaryTagline {
+    font-size: 10pt;
+    color: #4A4D52;
+    margin-bottom: 3mm;
+  }
+  
+  /* Key statistics */
+  .summaryHighlights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2mm;
+    margin: 3mm 0;
+    padding: 2mm 0;
+  }
+  
+  .summaryHighlight {
+    border: 0.5pt solid #DDD;
+    border-radius: 1.5mm;
+    padding: 1.5mm;
+    text-align: center;
+    background: #FAFAFA;
+  }
+  
+  .highlightNumber {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #1B365D;
+  }
+  
+  .highlightLabel {
+    font-size: 6pt;
+    text-transform: uppercase;
+    color: #4A4D52;
+  }
+  
+  /* Summary content */
+  .summaryContent {
+    padding: 0 !important;
+  }
+
+  /*********************************************
+   * METRICS SECTION
+   *********************************************/
+  
+  /* Metrics section */
+  .metricsSection {
+    padding: 0 !important;
+    margin: 3mm 0;
+    background: white;
+    overflow: hidden;
+    border: 0.5pt solid #DDD;
+    border-radius: 2mm;
+  }
+  
+  /* Metrics header */
+  .metricsSectionHeader {
+    padding: 2mm;
+    border-bottom: 0.5pt solid #DDD;
+    background: #FAFAFA;
+  }
+  
+  .metricsHeading {
+    font-size: 11pt;
+    color: #1B365D;
+    font-weight: bold;
+    margin-bottom: 1mm;
+  }
+  
+  .metricsSubheading {
+    font-size: 8pt;
+    color: #4A4D52;
+    font-style: italic;
+  }
+  
+  /* Metrics grid */
+  .metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2mm;
+    padding: 2mm;
+  }
+  
+  /* Metric cards */
+  .metricCard {
+    border: 0.5pt solid #DDD;
+    border-radius: 1.5mm;
+    padding: 2mm;
+    text-align: center;
+    position: relative;
+    background: #FAFAFA;
+  }
+  
+  /* Colored indicators for different metrics */
+  .maintenance {
+    border-top: 1.5pt solid #2E6A4F; /* Deep Green */
+  }
+  
+  .completion {
+    border-top: 1.5pt solid #C4A87C; /* Gold */
+  }
+  
+  .safety {
+    border-top: 1.5pt solid #1B365D; /* Navy Blue */
+  }
+  
+  .retention {
+    border-top: 1.5pt solid #4A4D52; /* Steel Gray */
+  }
+  
+  .cost {
+    border-top: 1.5pt solid #2C2F33; /* Charcoal */
+  }
+  
+  .metricTitle {
+    font-size: 7pt;
+    text-transform: uppercase;
+    color: #4A4D52;
+    margin-bottom: 2mm;
+    min-height: 5mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .metricValue {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #1B365D;
+  }
+  
+  .metricChange {
+    font-size: 7pt;
+    margin: 1mm 0;
+  }
+  
+  .positiveChange {
+    color: #2E6A4F; /* Deep Green */
+  }
+  
+  .negativeChange {
+    color: #B33A3A; /* Red */
+  }
+  
+  /* Progress bars */
+  .metricBar {
+    height: 2mm;
+    background: #EEEEEE;
+    margin: 2mm 0;
+    border-radius: 1mm;
+    position: relative;
+  }
+  
+  .metricBarBefore, .metricBarAfter {
+    height: 100%;
+    border-radius: 1mm;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .metricBarBefore {
+    background: #DDD;
+  }
+  
+  /* Different patterns for metrics */
+  .maintenance .metricBarAfter {
+    background: #2E6A4F; /* Deep Green */
+  }
+  
+  .completion .metricBarAfter {
+    background: #C4A87C; /* Gold */
+  }
+  
+  .safety .metricBarAfter {
+    background: #1B365D; /* Navy Blue */
+  }
+  
+  .retention .metricBarAfter {
+    background: #4A4D52; /* Steel Gray */
+  }
+  
+  .cost .metricBarAfter {
+    background: #2C2F33; /* Charcoal */
+  }
+  
+  /* Width classes for progress bars */
+  .metricBarBefore76 { width: 76%; }
+  .metricBarBefore78 { width: 78%; }
+  .metricBarBefore100 { width: 100%; }
+  .metricBarBefore72 { width: 72%; }
+  .metricBarAfter98_5 { width: 98.5%; }
+  .metricBarAfter94 { width: 94%; }
+  .metricBarAfter55 { width: 55%; }
+  .metricBarAfter100 { width: 100%; }
+  .metricBarAfter74 { width: 74%; }
+  
+  /* Metric comparison */
+  .metricComparison {
+    display: flex;
+    justify-content: space-between;
+    font-size: 6pt;
+    color: #4A4D52;
+  }
+  
+  .metricLabel {
+    font-size: 6pt;
+  }
+  
+  /* Metrics summary */
+  .metricsSummary {
+    padding: 2mm;
+  }
+  
+  .summaryBox {
+    background: rgba(196, 168, 124, 0.05);
+    border: 0.5pt solid rgba(196, 168, 124, 0.2);
+    border-radius: 2mm;
+    padding: 2mm;
+  }
+  
+  /*********************************************
+  * ACHIEVEMENTS
+  *********************************************/
+
+  /* Achievements grid */
+  .summaryAchievements {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3mm;
+    margin-top: 4mm;
+  }
+
+  /* Achievement cards */
+  .achievement {
+    background: white;
+    border-radius: 1.5mm;
+    padding: 2.5mm;
+    box-shadow: none !important;
+    position: relative;
+    border-left: 1mm solid #1B365D; /* Navy Blue */
+  }
+
+  /* Achievement icon */
+  .achievementIcon {
+    display: none;
+  }
+
+  /* Achievement title */
+  .achievementTitle {
+    font-size: 10pt;
+    font-weight: 600;
+    color: #2C2F33;
+    margin-bottom: 1mm;
+  }
+
+  /* Achievement text */
+  .achievementText {
+    font-size: 8pt;
+    color: #4A4D52;
+    line-height: 1.5;
+  }
+  
+  /*********************************************
+   * SKILLS SECTION
+   *********************************************/
+  
+  /* Skills section (starts on new page) */
+  #skills-section {
+    page-break-before: always;
+    break-before: page;
+    padding-top: 5mm !important;
+  }
+  
+  /* Skills list grid */
+  .skillsList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3mm;
+  }
+  
+  /* Skill card */
+  .skillCard {
+    border: 0.5pt solid #DDD;
+    border-radius: 1.5mm;
+    overflow: hidden;
+  }
+  
+  /* Skill card header */
+  .skillCardHeader {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    padding: 2mm;
+  }
+  
+  /* Skill card header background colors */
+  .skillCardHeaderLeadership {
+    background: rgba(27, 54, 93, 0.05);
+  }
+  
+  .skillCardHeaderCommunication {
+    background: rgba(196, 168, 124, 0.05);
+  }
+  
+  .skillCardHeaderProblemSolving {
+    background: rgba(46, 106, 79, 0.05);
+  }
+  
+  .skillCardHeaderStrategic {
+    background: rgba(74, 77, 82, 0.05);
+  }
+  
+  /* Icon container */
+  .iconContainer {
+    border-radius: 50%;
+    width: 8mm;
+    height: 8mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Icon container backgrounds */
+  .iconContainerLeadership {
+    background: rgba(27, 54, 93, 0.1);
+  }
+  
+  .iconContainerCommunication {
+    background: rgba(196, 168, 124, 0.1);
+  }
+  
+  .iconContainerProblemSolving {
+    background: rgba(46, 106, 79, 0.1);
+  }
+  
+  .iconContainerStrategic {
+    background: rgba(74, 77, 82, 0.1);
+  }
+  
+  /* Skill card titles */
+  .skillCardTitleLeadership {
+    color: #1B365D;
+  }
+  
+  .skillCardTitleCommunication {
+    color: #C4A87C;
+  }
+  
+  .skillCardTitleProblemSolving {
+    color: #2E6A4F;
+  }
+  
+  .skillCardTitleStrategic {
+    color: #4A4D52;
+  }
+  
+  /* Skill card content */
+  .skillCardContent {
+    padding: 2mm;
+  }
+  
+  /* Skill list */
+  .skillCardList {
+    list-style-type: disc;
+    padding-left: 3mm;
+    display: flex;
+    flex-direction: column;
+    gap: 1mm;
+  }
+  
+  .skillCardList li {
+    font-size: 8pt;
+  }
+  
+  /*********************************************
+   * PROJECTS SECTION
+   *********************************************/
+  
+  /* Projects section */
+  #projects-section {
+    page-break-before: always;
+    break-before: page;
+    padding-top: 5mm !important;
+  }
+  
+  /* Projects analysis container */
+  .projectsAnalysisContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 3mm;
+    margin-bottom: 5mm;
+  }
+  
+  /* Project column */
+  .projectColumn {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  /* Chart container */
+  .chartContainer {
+    height: 40mm;
+  }
+  
+  /* Project metrics container */
+  .projectMetricsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+  }
+  
+  /* Progress bar container */
+  .progressBarContainer {
+    width: 100%;
+  }
+  
+  /* Progress bar label */
+  .progressBarLabel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1mm;
+  }
+  
+  /* Progress bar text */
+  .progressBarText {
+    font-size: 8pt;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #4A4D52;
+  }
+  
+  /* Progress bar background */
+  .progressBarBg {
+    width: 100%;
+    background-color: #D1D5DB;
+    border-radius: 1mm;
+    height: 2mm;
+  }
+  
+  /* Progress bar */
+  .progressBar {
+    height: 2mm;
+    border-radius: 1mm;
+  }
+  
+  /* Progress bar colors */
+  .completionRate {
+    background: linear-gradient(to right, #1B365D, #2C2F33);
+    width: 94%;
+  }
+  
+  .budgetAdherence {
+    background: linear-gradient(to right, #2E6A4F, #4A4D52);
+    width: 97%;
+  }
+  
+  .clientSatisfaction {
+    background: linear-gradient(to right, #C4A87C, #2C2F33);
+    width: 92%;
+  }
+  
+  .teamEfficiency {
+    background: linear-gradient(to right, #1B365D, #4A4D52);
+    width: 89%;
+  }
+  
+  .resourceOptimization {
+    background: linear-gradient(to right, #2E6A4F, #C4A87C);
+    width: 91%;
+  }
+  
+  /* Highlights container - hidden in print */
+  .highlightsContainer {
+    display: none !important;
+  }
+  
+  /* Hide all highlight related elements */
+  .highlightCards,
+  .highlightCard,
+  .highlightCardLehkwiya,
+  .highlightCardMOI,
+  .highlightCardJabor,
+  .highlightCardLusail,
+  .highlightCardTitleLehkwiya,
+  .highlightCardTitleMOI,
+  .highlightCardTitleJabor,
+  .highlightCardTitleLusail,
+  .highlightCardText {
+    display: none !important;
+  }
+  
+  /* Add page break after projects analysis container */
+  .projectsAnalysisContainer::after {
+    content: "";
+    display: block;
+    page-break-after: always;
+    break-after: page;
+    height: 0;
+  }
+  
+  /*********************************************
+   * EXPERIENCE SECTION
+   *********************************************/
+  
+  /* Experience section */
+  #experience-section {
+    page-break-before: always;
+    break-before: page;
+    padding-top: 5mm !important;
+  }
+  
+  /* Expand all container - hidden in print */
+  .expandAllContainer {
+    display: none !important;
+  }
+  
+  /* Timeline container */
+  .timelineContainer {
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Timeline connector line */
+  .timelineContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 3mm;
+    width: 0.5pt;
+    background-color: #1B365D;
+    z-index: 0;
+  }
+  
+  /* Experience item */
+  .experienceItem {
+    margin-bottom: 4mm;
+    border-radius: 1.5mm;
+    overflow: hidden;
+    box-shadow: none !important;
+    background-color: white;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border: 0.5pt solid #DDD;
+  }
+  
+  /* Timeline header */
+  .timelineHeader {
+    position: relative;
+    padding: 2mm 2mm 2mm 7mm;
+    display: flex;
+    align-items: center;
+    background-color: #F8F9FA;
+    border-bottom: 0.5pt solid #DDD;
+  }
+  
+  /* Timeline marker */
+  .timelineMarker {
+    position: absolute;
+    width: 2mm;
+    height: 2mm;
+    background-color: #1B365D;
+    border-radius: 50%;
+    left: 3mm;
+    border: 0.5pt solid white;
+    z-index: 1;
+  }
+  
+  /* Timeline content */
+  .timelineContent {
+    flex-grow: 1;
+  }
+  
+  /* Timeline year */
+  .timelineYear {
+    font-size: 8pt;
+    font-weight: 500;
+    color: #1B365D;
+  }
+  
+  /* Timeline title */
+  .timelineTitle {
+    font-weight: 700;
+    color: #2C2F33;
+    font-size: 10pt;
+  }
+  
+  /* Timeline company */
+  .timelineCompany {
+    color: #4A4D52;
+    font-size: 8pt;
+  }
+  
+  /* Experience details - always show in print */
+  .experienceDetails {
+    padding: 3mm;
+    border-top: 0.5pt solid rgba(0, 0, 0, 0.05);
+    background-color: white;
+    display: block !important;
+  }
+  
+  /* Experience card */
+  .experienceCard {
+    padding-top: 0;
+  }
+  
+  /* Card title */
+  .cardTitle {
+    font-size: 11pt;
+    line-height: 1.5;
+    font-weight: 700;
+    color: #1B365D;
+    margin-bottom: 1mm;
+  }
+  
+  /* Card subtitle */
+  .cardSubtitle {
+    color: #4A4D52;
+    margin-bottom: 3mm;
+    font-size: 9pt;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Card subtitle line */
+  .cardSubtitle::before {
+    content: "";
+    width: 1mm;
+    height: 3mm;
+    background-color: #C4A87C;
+    margin-right: 1mm;
+    display: inline-block;
+  }
+  
+  /* Project */
+  .cardProject {
+    color: #2E6A4F;
+    font-weight: 500;
+    margin: 3mm 0;
+    padding: 2mm;
+    background-color: rgba(46, 106, 79, 0.05);
+    border-left: 1mm solid #2E6A4F;
+    border-radius: 0 1mm 1mm 0;
+    font-size: 9pt;
+  }
+  
+  /* Projects container */
+  .projectsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+    margin-bottom: 4mm;
+  }
+  
+  /* Project box */
+  .projectBox {
+    background-color: white;
+    border: 0.5pt solid rgba(0, 0, 0, 0.05);
+    border-radius: 1.5mm;
+    padding: 2mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Project name */
+  .projectName {
+    font-weight: 500;
+    color: #2C2F33;
+    flex: 1;
+    font-size: 9pt;
+  }
+  
+  /* Project value */
+  .projectValue {
+    font-size: 8pt;
+    color: #1B365D;
+    background-color: rgba(27, 54, 93, 0.07);
+    padding: 1mm;
+    border-radius: 1mm;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: 2mm;
+  }
+  
+  /* Card heading */
+  .cardHeading {
+    font-weight: 600;
+    color: #2C2F33;
+    margin-top: 4mm;
+    margin-bottom: 2mm;
+    display: flex;
+    align-items: center;
+    font-size: 10pt;
+  }
+  
+  /* Card heading decoration */
+  .cardHeading::before {
+    content: "";
+    width: 2mm;
+    height: 2mm;
+    background-color: #1B365D;
+    opacity: 0.2;
+    margin-right: 1mm;
+    display: inline-block;
+    transform: rotate(45deg);
+  }
+  
+  /* Card list */
+  .cardList {
+    list-style-type: none;
+    padding-left: 3mm;
+    margin-bottom: 4mm;
+    color: #4A4D52;
+  }
+  
+  /* List items */
+  .cardList li {
+    margin-bottom: 2mm;
+    position: relative;
+    line-height: 1.4;
+    padding-left: 3mm;
+    font-size: 9pt;
+  }
+  
+  /* List item bullet */
+  .cardList li::before {
+    content: "•";
+    color: #C4A87C;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+  
+  /* Key achievement */
+  .keyAchievement {
+    background-color: rgba(27, 54, 93, 0.03);
+    border-radius: 1mm;
+    padding: 2mm;
+    margin-bottom: 2mm;
+    margin-left: 0;
+    position: relative;
+  }
+  
+  /* Key achievement bullet */
+  .keyAchievement::before {
+    content: "★";
+    color: #C4A87C;
+    margin-right: 1mm;
+    font-size: 8pt;
+  }
+  
+  /*********************************************
+   * EDUCATION SECTION
+   *********************************************/
+  
+  /* Education section */
+  #education-section {
+    page-break-before: always;
+    break-before: page;
+    padding-top: 5mm !important;
+  }
+  
+  /* Education grid */
+  .educationGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3mm;
+  }
+  
+  /* Education card */
+  .educationCard {
+    border: 0.5pt solid #D1D5DB;
+    border-radius: 1.5mm;
+    padding: 3mm;
+    box-shadow: none !important;
+  }
+  
+  /* Education header */
+  .educationHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  /* Education title */
+  .educationTitle {
+    font-size: 11pt;
+    line-height: 1.5;
+    font-weight: 700;
+    color: #2C2F33;
+  }
+  
+  /* Education field */
+  .educationField {
+    color: #4A4D52;
+    font-size: 9pt;
+  }
+  
+  /* Education institution */
+  .educationInstitution {
+    color: #4A4D52;
+    font-size: 9pt;
+  }
+  
+  /* Education year */
+  .educationYear {
+    color: #D1D5DB;
+    font-size: 9pt;
+  }
+  
+  /* Education additional info */
+  .educationAdditional {
+    margin-top: 2mm;
+  }
+  
+  /* Education additional text */
+  .educationAdditionalText {
+    color: #4A4D52;
+    font-size: 8pt;
+  }
+  
+  /*********************************************
+   * FOOTER
+   *********************************************/
+  
+  /* Footer - hidden in print */
+  .footer {
+    display: none !important;
+  }
+  
+  /*********************************************
+   * UTILITY CLASSES
+   *********************************************/
+  
+  /* Force page breaks */
+  .pageBreakBefore {
+    page-break-before: always;
+    break-before: page;
+  }
+  
+  .pageBreakAfter {
+    page-break-after: always;
+    break-after: page;
+  }
+  
+  /* Prevent page breaks within elements */
+  .avoidPageBreak {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  /* Hide elements in print */
+  .noPrint, .printHidden {
+    display: none !important;
+  }
+  
+  /* Remove page breaks between experiences */
+  .experienceItem,
+  .experienceItem:nth-of-type(3),
+  .experienceItem:nth-of-type(n) {
+    page-break-before: auto !important;
+    break-before: auto !important;
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+  
+  /* Ensure experiences don't break across pages if possible */
+  .experienceItem {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  /* Portfolio footer watermark */
+  .portfolioContainer::after {
+    content: "Executive Portfolio";
+    position: fixed;
+    bottom: 7mm;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 7pt;
+    color: #DDD;
+  }
+  
+  /* Show all sections in print regardless of which one is active */
+  .hidden {
+    display: block !important;
+  }
+  
+  /* Visual enhancements for print */
+  section, .section {
+    border: none !important;
+    margin-bottom: 4mm !important;
+  }
+  
+  /* Optimize links for print */
+  a[href]:after {
+    content: none !important;
+  }
+  
+  /* Remove all animations and transitions */
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  /* Table optimizations */
+  table {
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 0.5pt solid #DDD;
+    padding: 1mm;
+    font-size: 8pt;
+  }
+  
+  /* Charts and visualizations */
+  .recharts-surface {
+    overflow: visible;
+  }
+  
+  .recharts-layer {
+    stroke-width: 0.5pt;
+  }
+  
+  /* Image optimizations */
+  img {
+    max-width: 100%;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
