@@ -482,6 +482,21 @@
   .metricBarAfter100 { width: 100%; }
   .metricBarAfter74 { width: 74%; }
   
+
+  @keyframes growBar {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--percent, 0%);
+    }
+  }
+  
+  .metricBarAfter {
+    animation: none !important; /* Disable animation in print */
+    width: var(--percent, 0%) !important; /* Immediately set to final width */
+  }
+  
   /* Metric comparison */
   .metricComparison {
     display: flex;
@@ -685,9 +700,61 @@
     min-width: 0;
   }
   
-  /* Chart container */
+  /* Chart Containers */
   .chartContainer {
-    height: 40mm;
+    height: 60mm;
+  }
+  
+  /* PROJECTS CHART OPTIMIZATIONS - Matching ExecutivePortfolio.module.css */
+  .projectColumn .chartContainer {
+    width: 100% !important;
+    height: 60mm !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  /* SVG container for chart */
+  .projectColumn .chartContainer svg {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: visible !important;
+  }
+  
+  /* Recharts wrapper */
+  .projectColumn :global(.recharts-wrapper) {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Pie chart styling */
+  .projectColumn :global(.recharts-pie) {
+    transform: none !important;
+  }
+  
+  /* Pie sector styling */
+  .projectColumn :global(.recharts-pie-sector) {
+    stroke: white !important;
+    stroke-width: 1px !important;
+  }
+  
+  /* Pie label text */
+  .projectColumn :global(.recharts-pie-label-text) {
+    font-size: 8pt !important;
+    font-weight: 500 !important;
+    fill: #333 !important;
+  }
+  
+  /* Pie label line */
+  .projectColumn :global(.recharts-pie-label-line) {
+    stroke: #999 !important;
+    stroke-width: 1px !important;
+  }
+  
+  /* Tooltip styling - hidden in print */
+  .projectColumn :global(.recharts-tooltip-wrapper) {
+    display: none !important;
   }
   
   /* Project metrics container */

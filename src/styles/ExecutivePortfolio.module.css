@@ -625,8 +625,12 @@
 }
 
 @keyframes growBar {
-  from { width: 0; }
-  to { width: var(--percent, 0%); }
+  0% {
+    width: 0;
+  }
+  100% {
+    width: var(--percent, 0%);
+  }
 }
 
 /* Comparison legend under cards */
@@ -1910,13 +1914,47 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
 }
 
 .timelineTitle {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   font-weight: 700;
   color: #2C2F33; /* Charcoal Black */
 }
 
+.timelineCompanyLocation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+  color: #4A4D52; /* Steel Gray */
+}
+
 .timelineCompany {
   color: #4A4D52; /* Steel Gray */
-  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+}
+
+.timelineCompany::before {
+  content: "";
+  width: 3px;
+  height: 0.9rem;
+  background-color:rgb(196, 124, 125); /* Gold (Muted) */
+  margin-right: 0.5rem;
+  display: inline-block;
+  border-radius: 1px;
+}
+
+.timelineLocation {
+  color: #4A4D52; /* Steel Gray */
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-style: italic;
+  display: flex;
+  align-items: center;
 }
 
 .expandIcon {
@@ -1959,7 +1997,7 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
   content: "";
   width: 3px;
   height: 0.9rem;
-  background-color: #C4A87C; /* Gold (Muted) */
+  background-color:rgb(196, 124, 125); /* Gold (Muted) */
   margin-right: 0.5rem;
   display: inline-block;
   border-radius: 1px;
@@ -1967,13 +2005,14 @@ button, a, .navButton, .skillCardButton, .timelineItem, .experienceCard,
 
 /* Project styling */
 .cardProject {
-  color: #2E6A4F; /* Deep Green */
-  font-weight: 500;
-  margin: 1rem 0;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
   padding: 0.75rem 1rem;
-  background-color: rgba(46, 106, 79, 0.05);
-  border-left: 3px solid #2E6A4F;
-  border-radius: 0 4px 4px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
 }
 
 /* Projects container */

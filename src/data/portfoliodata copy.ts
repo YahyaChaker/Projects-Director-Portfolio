@@ -46,10 +46,9 @@ export const summaryContent = {
     { number: "94%", label: "Completion Rate" }
   ],
   paragraphs: [
-    "<strong>Currently serving as an FM Projects Director</strong>, I am a UPDA-accredited Electrical and Electronics Engineer with more than 18 years of leadership experience across the GCC. I have a proven track record of driving operational excellence, strategic growth, and cost optimization across facilities management, construction, real estate, and oil & gas sectors.",
-    "Renowned for turning around underperforming operations through data-driven decision-making, efficient resource utilization, and a strong commitment to safety and quality. Skilled in leading large, multidisciplinary teams and consistently delivering high-impact results aligned with business objectives."
+    "<strong>UPDA-accredited Electrical and Electronics Engineer</strong> with extensive leadership experience across the GCC region. My career has been defined by consistently delivering operational excellence and strategic growth in diverse sectors including facilities management, construction, real estate, and oil & gas.",
+    "I specialize in optimizing operations, driving efficiency improvements, and maximizing resource utilization while maintaining the highest standards of quality and safety. My approach combines <strong>analytical precision</strong> with <strong>strategic vision</strong> to transform organizational performance and deliver measurable results that exceed expectations."
   ],
-  
   metricsSection: {
     heading: "Performance Overview",
     subheading: "Key performance indicators showing measurable improvements across critical business areas under my leadership.",
@@ -230,14 +229,14 @@ export const projectsContent = {
 
 // Experience Timeline
 export const experienceData = [
-  { year: "May 2023-Present", title: "FM Projects Director", company: "Elegancia Facilities Management", location: "Doha, Qatar"},
-  { year: "June 2019 – April 2023", title: "Senior Facilities Manager", company: "Elegancia Facilities Management", location: "Doha, Qatar" },
-  { year: "November 2018 – June 2019", title: "MEP Construction Manager", company: "Qatari Diar - Saudi Bin Laden Group", location: "Doha, Qatar" },
-  { year: "October 2016 – November 2018", title: "Operations and Maintenance Manager", company: "Al Jabor Realty", location: "Doha, Qatar" },
-  { year: "December 2013 – September 2016", title: "Project Manager - MEP and Instrumentation", company: "Roots Energy and Engineering Services", location: "Doha, Qatar" },
-  { year: "April 2011 – November 2013", title: "Senior Electrical Engineer", company: "Roots Energy and Engineering Services", location: "Doha, Qatar" },
-  { year: "September 2007 – May 2011", title: "Facility Manager", company: "Allied Maintenance Co. Ltd.", location: "Eastern Province, Saudi Arabia" },
-];  
+  { year: "2023-Present", title: "FM Projects Director", company: "Elegancia Facilities Management" },
+  { year: "2019-2023", title: "Senior Facilities Manager", company: "Elegancia Facilities Management" },
+  { year: "2018-2019", title: "MEP Construction Manager", company: "Qatari Diar - Saudi Bin Laden Group" },
+  { year: "2016-2018", title: "Operations and Maintenance Manager", company: "Al Jabor Realty" },
+  { year: "2013-2016", title: "Project Manager - MEP and Instrumentation", company: "Roots Energy and Engineering Services" },
+  { year: "2011-2013", title: "Senior Electrical Engineer", company: "Roots Energy and Engineering Services" },
+  { year: "2007-2011", title: "Facility Manager", company: "Allied Maintenance Co. Ltd." },
+];
 
 // Detailed Experience Content
 export const detailedExperienceContent = {

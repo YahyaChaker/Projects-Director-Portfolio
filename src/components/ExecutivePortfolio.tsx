@@ -189,41 +189,46 @@ const ExecutivePortfolio: React.FC = () => {
                 </div>
                 
                 <div className={`${styles.metricsGrid} ${PrintStyles.metricsGrid}`}>
-                  {summaryContent.metricsSection.metrics.map((metric, index) => {
-                    const initialValueClassName = `metricBarBefore${metric.initialValue.replace('.', '_')}`;
-                    const currentValueClassName = `metricBarAfter${metric.currentValue.replace('.', '_')}`;
-                    
-                    return (
-                      <div 
-                        key={index} 
-                        className={`${styles.metricCard} ${styles[metric.className]} ${PrintStyles.metricCard} ${PrintStyles[metric.className]}`}
-                      >
-                        <div className={`${styles.metricTitle} ${PrintStyles.metricTitle}`}>{metric.title}</div>
-                        <div className={`${styles.metricValue} ${PrintStyles.metricValue}`}>{metric.value}</div>
-                        <div 
-                          className={`${styles.metricChange} ${metric.positive ? styles.positiveChange : styles.negativeChange} ${PrintStyles.metricChange} ${metric.positive ? PrintStyles.positiveChange : PrintStyles.negativeChange}`}
-                        >
-                          {metric.change}
-                        </div>
-                        
-                        <div className={`${styles.metricBar} ${PrintStyles.metricBar}`}>
-                          <div 
-                            className={`${styles.metricBarBefore} ${styles[initialValueClassName]} ${PrintStyles.metricBarBefore} ${PrintStyles[initialValueClassName]}`}
-                          ></div>
-                          <div 
-                            className={`${styles.metricBarAfter} ${styles[currentValueClassName]} ${PrintStyles.metricBarAfter} ${PrintStyles[currentValueClassName]}`}
-                          ></div>
-                        </div>
-                        
-                        <div className={`${styles.metricComparison} ${PrintStyles.metricComparison}`}>
-                          <span className={`${styles.metricLabel} ${PrintStyles.metricLabel}`}>Initial: {metric.initialValue}</span>
-                          <span className={`${styles.metricLabel} ${PrintStyles.metricLabel}`}>Current: {metric.currentValue}</span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-                
+  {summaryContent.metricsSection.metrics.map((metric, index) => {
+    const initialValueClassName = `metricBarBefore${metric.initialValue.replace('.', '_')}`;
+    const currentValueClassName = `metricBarAfter${metric.currentValue.replace('.', '_')}`;
+    
+    // Parse only the current value for the progress bar
+    const currentValue = metric.currentValue.includes('%') 
+      ? parseFloat(metric.currentValue) 
+      : parseFloat(metric.currentValue) * 100;
+    
+    return (
+      <div 
+        key={index} 
+        className={`${styles.metricCard} ${styles[metric.className]} ${PrintStyles.metricCard} ${PrintStyles[metric.className]}`}
+      >
+        <div className={`${styles.metricTitle} ${PrintStyles.metricTitle}`}>{metric.title}</div>
+        <div className={`${styles.metricValue} ${PrintStyles.metricValue}`}>{metric.value}</div>
+        <div 
+          className={`${styles.metricChange} ${metric.positive ? styles.positiveChange : styles.negativeChange} ${PrintStyles.metricChange} ${metric.positive ? PrintStyles.positiveChange : PrintStyles.negativeChange}`}
+        >
+          {metric.change}
+        </div>
+        
+        <div className={`${styles.metricBar} ${PrintStyles.metricBar}`}>
+          <div 
+            className={`${styles.metricBarBefore} ${styles[initialValueClassName]} ${PrintStyles.metricBarBefore} ${PrintStyles[initialValueClassName]}`}
+          ></div>
+          <div 
+            className={`${styles.metricBarAfter} ${styles[currentValueClassName]} ${PrintStyles.metricBarAfter} ${PrintStyles[currentValueClassName]}`}
+            style={{ '--percent': `${currentValue}%` } as React.CSSProperties}
+          ></div>
+        </div>
+        
+        <div className={`${styles.metricComparison} ${PrintStyles.metricComparison}`}>
+          <span className={`${styles.metricLabel} ${PrintStyles.metricLabel}`}>Initial: {metric.initialValue}</span>
+          <span className={`${styles.metricLabel} ${PrintStyles.metricLabel}`}>Current: {metric.currentValue}</span>
+        </div>
+      </div>
+    );
+  })}
+</div>
                 <div className={`${styles.metricsSummary} ${PrintStyles.metricsSummary}`}>
                   <div className={`${styles.summaryBox} ${PrintStyles.summaryBox}`}>
                     <div className={`${styles.summaryText} ${PrintStyles.summaryText}`}>
@@ -391,7 +396,46 @@ const ExecutivePortfolio: React.FC = () => {
                     <div className={`${styles.timelineContent} ${PrintStyles.timelineContent}`}>
                       <div className={`${styles.timelineYear} ${PrintStyles.timelineYear}`}>{job.year}</div>
                       <div className={`${styles.timelineTitle} ${PrintStyles.timelineTitle}`}>{job.title}</div>
-                      <div className={`${styles.timelineCompany} ${PrintStyles.timelineCompany}`}>{job.company}</div>
+                      <div className={`${styles.timelineCompanyLocation} ${PrintStyles.timelineCompanyLocation}`}>
+                        <div className={`${styles.timelineCompany} ${PrintStyles.timelineCompany}`}>{job.company}</div>
+                        <div className={`${styles.timelineLocation} ${PrintStyles.timelineLocation}`}>
+                          <MapPin className={`${styles.lucideIcon} ${styles.locationIcon} ${PrintStyles.lucideIcon}`} size={16} />
+                          {job.location}
+                        </div>  
+                      </div>  
+                      
+                      {(() => {
+                        // Use type assertion instead of direct access
+                        const jobDetails = (detailedExperienceContent as Record<string, any>)[job.title];
+                        if (!jobDetails) return null;
+                        
+                        return (
+                          <div className={`${styles.experienceCard} ${PrintStyles.experienceCard}`}>
+                            
+                            {/* Project or projects section if present */}
+                            {jobDetails.project && (
+                              <div className={styles.cardProject}>{jobDetails.project}</div>
+                            )}
+                            
+                            {jobDetails.projects && (
+                              <>
+                                
+                                <div className={`${styles.projectsContainer} ${PrintStyles.projectsContainer}`}>
+                                  {jobDetails.projects.map((project: any, projectIndex: number) => (
+                                    <div key={projectIndex} className={`${styles.projectBox} ${PrintStyles.projectBox}`}>
+                                      <div className={`${styles.projectName} ${PrintStyles.projectName}`}>{project.name}</div>
+                                      <div className={`${styles.projectValue} ${PrintStyles.projectValue}`}>{project.value}</div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </>
+                            )}
+                            
+
+                          </div>
+                        );
+                      })()}
+                    
                     </div>
                     {expandedExperiences.includes(job.title) ? 
                       <ChevronDown className={`${styles.lucideIcon} ${styles.expandIcon} ${PrintStyles.lucideIcon}`} size={16} /> : 
